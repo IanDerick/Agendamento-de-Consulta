@@ -17,17 +17,17 @@
                 <ul class="nav flex-column">
                     <li class="nav-item">
                         <a class="nav-link" href="agenda.phtml">
-                            <i class="bi bi-calendar fs-5"></i>
+                            <i class="bi bi-calendar fs-3"></i>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="novo_doutor.phtml">
-                            <i class="bi bi-person-fill fs-5"></i>
+                            <i class="bi bi-person-fill fs-3"></i>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="novo_paciente.phtml">
-                            <i class="bi bi-people-fill fs-5"></i>
+                            <i class="bi bi-people-fill fs-3"></i>
                         </a>
                     </li>
                 </ul>
@@ -35,74 +35,109 @@
         </nav>
 
         <main class="col-md-9 col-lg-11 px-md-4 main-content">
-             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+             <div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-6 pb-2 mb-3">
                 <h1 class="h2">AGENDA</h1>
             </div>
-            <div class="d-flex justify-content-between align-items-center list-item pt-10 pb-2 mb-3 border-bottom">
-                <span>Ian Derick</span>
-                <div>
-                    <span>Segunda-feira</span>
-                    <span> - </span>
-                    <span>10:00 / 11:00</span>
-                </div>
-                <div class="button-group">
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoPaciente">
+            <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Horário
+                        <i class="bi bi-clock"></i>
+                    </th>
+                    <th scope="col">Dia-semana
+                        <i class="bi bi-calendar2-week"></i>
+                    </th>
+                    <th scope="col">Nome
+                        <i class="bi bi-person"></i>
+                    </th>
+                    <th scope="col">
+                        <i class="bi bi-three-dots"></i>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">09:00 - 10:00 </th>
+                <td>Segunda-feira</td>
+                <td>Andrea Silmara</td>
+                <td>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoDoutor">
                         <i class="bi bi-pencil"></i>
                     </button>
-                </div>
-            </div>
-            <div class="d-flex justify-content-between align-items-center list-item pt-10 pb-2 mb-3 border-bottom">
-                <span>Bruna Prochnow</span>
-                <div>
-                    <span>Segunda-feira</span>
-                    <span> - </span>
-                    <span>11:00 / 12:00</span>
-                </div>
-                <div class="button-group">
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoPaciente">
+                </td>
+                </tr>
+                <tr>
+                <th scope="row">10:00 - 11:00</th>
+                <td>Segunda-feira</td>
+                <td>Ian Derick</td>
+                <td>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoDoutor">
                         <i class="bi bi-pencil"></i>
                     </button>
-                </div>
-            </div>
-            <div class="d-flex justify-content-between align-items-center list-item pt-10 pb-2 mb-3 border-bottom">
-                <span>Andrea Silmara</span>
-                <div>
-                    <span>Segunda-feira</span>
-                    <span> - </span>
-                    <span>13:00 / 14:00</span>
-                </div>
-                <div class="button-group">
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoPaciente">
+                </td>
+                </tr>
+                <tr>
+                <th scope="row">11:00 - 12:00</th>
+                <td>Segunda-Feira</td>
+                <td>Bruna Camille</td>
+                <td>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoDoutor">
                         <i class="bi bi-pencil"></i>
                     </button>
-                </div>
-            </div> 
-            <div class="d-flex justify-content-between align-items-center list-item pt-10 pb-2 mb-3 border-bottom">
-                <span>Ivan Rodrigues</span>
-                <div>
-                    <span>Segunda-feira</span>
-                    <span> - </span>
-                    <span>14:00 / 15:00</span>
-                </div>
-                <div class="button-group">
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoPaciente">
+                </td>
+                </tr>
+                <tr>
+                <th scope="row">13:00 - 14:00 </th>
+                <td>Segunda-feira</td>
+                <td>Caio Santos</td>
+                <td>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoDoutor">
                         <i class="bi bi-pencil"></i>
                     </button>
-                </div>
-            </div> 
-            <div class="d-flex justify-content-between align-items-center list-item pt-10 pb-2 mb-3 border-bottom">
-                <span>Caio Santos</span>
-                <div>
-                    <span>Segunda-feira</span>
-                    <span> - </span>
-                    <span>15:00 / 16:00</span>
-                </div>
-                <div class="button-group">
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoPaciente">
+                </td>
+                </tr>
+                <tr>
+                <th scope="row">14:00 - 15:00 </th>
+                <td>Segunda-feira</td>
+                <td>João Rieger</td>
+                <td>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoDoutor">
                         <i class="bi bi-pencil"></i>
                     </button>
-                </div>
-            </div>    
+                </td>
+                </tr>
+                <tr>
+                <th scope="row">15:00 - 16:00 </th>
+                <td>Segunda-feira</td>
+                <td>Paula Leão</td>
+                <td>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoDoutor">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                </td>
+                </tr>
+                <tr>
+                <th scope="row">16:00 - 17:00 </th>
+                <td>Segunda-feira</td>
+                <td>Munique Nascimento</td>
+                <td>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoDoutor">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                </td>
+                </tr>
+                <tr>
+                <th scope="row">17:00 - 18:00 </th>
+                <td>Segunda-feira</td>
+                <td>Ivan Rodrigues</td>
+                <td>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoDoutor">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                </td>
+                </tr>
+            </tbody>
+            </table>
         </main>
     </div>
 </div>
