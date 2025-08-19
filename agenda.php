@@ -16,17 +16,17 @@
             <div class="position-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="agenda.phtml">
+                        <a class="nav-link" href="agenda.php">
                             <i class="bi bi-calendar fs-3"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="novo_doutor.phtml">
+                        <a class="nav-link" href="novo_doutor.php">
                             <i class="bi bi-person-fill fs-3"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="novo_paciente.phtml">
+                        <a class="nav-link" href="novo_paciente.php">
                             <i class="bi bi-people-fill fs-3"></i>
                         </a>
                     </li>
@@ -36,8 +36,8 @@
 
         <main class="col-md-9 col-lg-11 px-md-4 main-content">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-                <h1 class="h2">Agenda</h1>
-                <button type="button" class="btn btn-outline-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#modalNovoDoutor">
+                <h1 class="h1">Agenda</h1>
+                <button type="button" class="btn btn-outline-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#modalNovoAgendamento">
                     <i class="bi bi-plus me-10"></i>
                 </button>
             </div>
@@ -64,7 +64,7 @@
                 <td>Segunda-feira</td>
                 <td>Andrea Silmara</td>
                 <td>
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoDoutor">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaAgendamento">
                         <i class="bi bi-pencil"></i>
                     </button>
                 </td>
@@ -74,7 +74,7 @@
                 <td>Segunda-feira</td>
                 <td>Ian Derick</td>
                 <td>
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoDoutor">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaAgendamento">
                         <i class="bi bi-pencil"></i>
                     </button>
                 </td>
@@ -84,7 +84,7 @@
                 <td>Segunda-Feira</td>
                 <td>Bruna Camille</td>
                 <td>
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoDoutor">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaAgendamento">
                         <i class="bi bi-pencil"></i>
                     </button>
                 </td>
@@ -94,7 +94,7 @@
                 <td>Segunda-feira</td>
                 <td>Caio Santos</td>
                 <td>
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoDoutor">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaAgendamento">
                         <i class="bi bi-pencil"></i>
                     </button>
                 </td>
@@ -104,7 +104,7 @@
                 <td>Segunda-feira</td>
                 <td>João Rieger</td>
                 <td>
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoDoutor">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaAgendamento">
                         <i class="bi bi-pencil"></i>
                     </button>
                 </td>
@@ -114,7 +114,7 @@
                 <td>Segunda-feira</td>
                 <td>Paula Leão</td>
                 <td>
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoDoutor">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaAgendamento">
                         <i class="bi bi-pencil"></i>
                     </button>
                 </td>
@@ -124,7 +124,7 @@
                 <td>Segunda-feira</td>
                 <td>Munique Nascimento</td>
                 <td>
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoDoutor">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaAgendamento">
                         <i class="bi bi-pencil"></i>
                     </button>
                 </td>
@@ -134,7 +134,7 @@
                 <td>Segunda-feira</td>
                 <td>Ivan Rodrigues</td>
                 <td>
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoDoutor">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaAgendamento">
                         <i class="bi bi-pencil"></i>
                     </button>
                 </td>
@@ -144,6 +144,8 @@
         </main>
     </div>
 </div>
+    <?php include 'includes/modal_novo_agendamento.php'; ?>
+    <?php include 'includes/modal_edita_agendamento.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/agendamento-de-consulta/js/script.js"></script>
 </body>

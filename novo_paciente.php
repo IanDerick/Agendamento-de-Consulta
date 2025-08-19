@@ -18,30 +18,29 @@
                 <ul class="nav flex-column">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="agenda.phtml">
+                        <a class="nav-link" href="agenda.php">
                             <i class="bi bi-calendar fs-3"></i>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="novo_doutor.phtml">
+                        <a class="nav-link" href="novo_doutor.php">
                             <i class="bi bi-person-fill fs-3"></i>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="novo_paciente.phtml">
+                        <a class="nav-link" href="novo_paciente.php">
                             <i class="bi bi-people-fill fs-3"></i>
                         </a>
                     </li>
-
                 </ul>
             </div>
         </nav>
 
         <main class="col-md-9 col-lg-11 px-md-4 main-content">
              <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Pacientes</h1>
+                <h1 class="h1">Pacientes</h1>
                 <button type="button" class="btn btn-outline-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#modalNovoPaciente">
                     <i class="bi bi-plus me-10"></i>
                 </button>
@@ -104,46 +103,7 @@
         </main>
     </div>
 </div>
-
-<div class="modal fade" id="modalNovoPaciente" tabindex="-1" aria-labelledby="modalNovoPacienteLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalNovoPacienteLabel">Novo Paciente</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="#" method="post">
-                    <div class="row">
-                        <div class="col-md-9">
-                            <div class="mb-3">
-                                <label for="nomePaciente" class="form-label">Nome:</label>
-                                <input type="text" class="form-control" id="nomePaciente" name="nomePaciente" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="emailPaciente" class="form-label">E-mail:</label>
-                                <input type="email" class="form-control" id="emailPaciente" name="emailPaciente" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="telefonePaciente" class="form-label">Telefone:</label>
-                                <input type="tel" class="form-control" id="telefonePaciente" name="telefonePaciente">
-                            </div>
-                        </div>
-                        <div class="col-md-3 text-center">
-                            <div class="mb-3">
-                                <i class="bi bi-person-circle display-1 text-secondary"></i>
-                                <small class="d-block mt-2">Nome:</small>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" form="formNovoPaciente" class="btn btn-green">Salvar</button>
-            </div>
-        </div>
-    </div>
-</div>
+    <?php include 'includes/modal_novo_paciente.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/agendamento-de-consulta/js/script.js"></script>
 </body>
