@@ -27,6 +27,15 @@
                         <label for="horariFinal" class="form-label">Horário Final</label>
                         <input type="time" class="form-control" id="horariFinal" name="horariFinal" required>
                     </div>
+                    <div class="mb-3">
+                        <label for="cars" class="form-label">Doutor</label>
+                        <br>
+                        <select name="SelectDoutor" id="SelectDoutor" class="form-control">
+                            <option value="#">Selecione</option>
+                            <option value="#1">Dr. Bruno</option>
+                            <option value="#2">Dra. Rafaela</option>
+                        </select>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">

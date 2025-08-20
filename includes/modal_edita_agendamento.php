@@ -28,6 +28,15 @@
                         <input type="time" class="form-control" id="horariFinal" name="horariFinal" >
                     </div>
                     <div class="mb-3">
+                        <label for="cars" class="form-label">Doutor</label>
+                        <br>
+                        <select name="SelectDoutor" id="SelectDoutor"  class="form-control">
+                            <option value="#">Selecione</option>
+                            <option value="#1">Dr. Bruno</option>
+                            <option value="#2">Dra. Rafaela</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
                         <button type="button" class="btn btn-primary" onclick="mostrarInformacoes(event)">
                             Exames
                             <i id="iconeSeta" class="bi bi-arrow-down"></i>

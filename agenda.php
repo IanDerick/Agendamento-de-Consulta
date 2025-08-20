@@ -53,6 +53,9 @@
                     <th scope="col">Nome
                         <i class="bi bi-person"></i>
                     </th>
+                    <th scope="col">Doutor
+                        <i class="bi bi-person"></i>
+                    </th>
                     <th scope="col">
                         <i class="bi bi-three-dots"></i>
                     </th>
@@ -63,6 +66,7 @@
                 <th scope="row">09:00 - 10:00 </th>
                 <td>Segunda-feira</td>
                 <td>Andrea Silmara</td>
+                <td>Dr. Rafaela</td>
                 <td>
                     <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaAgendamento">
                         <i class="bi bi-pencil"></i>
@@ -73,6 +77,7 @@
                 <th scope="row">10:00 - 11:00</th>
                 <td>Segunda-feira</td>
                 <td>Ian Derick</td>
+                <td>Dr. Bruno</td>
                 <td>
                     <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaAgendamento">
                         <i class="bi bi-pencil"></i>
@@ -83,6 +88,7 @@
                 <th scope="row">11:00 - 12:00</th>
                 <td>Segunda-Feira</td>
                 <td>Bruna Camille</td>
+                <td>Dr. Rafaela</td>
                 <td>
                     <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaAgendamento">
                         <i class="bi bi-pencil"></i>
@@ -93,6 +99,7 @@
                 <th scope="row">13:00 - 14:00 </th>
                 <td>Segunda-feira</td>
                 <td>Caio Santos</td>
+                <td>Dr. Bruno</td>
                 <td>
                     <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaAgendamento">
                         <i class="bi bi-pencil"></i>
@@ -103,6 +110,7 @@
                 <th scope="row">14:00 - 15:00 </th>
                 <td>Segunda-feira</td>
                 <td>João Rieger</td>
+                <td>Dr. Bruno</td>
                 <td>
                     <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaAgendamento">
                         <i class="bi bi-pencil"></i>
@@ -113,6 +121,7 @@
                 <th scope="row">15:00 - 16:00 </th>
                 <td>Segunda-feira</td>
                 <td>Paula Leão</td>
+                <td>Dr. Rafaela</td>
                 <td>
                     <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaAgendamento">
                         <i class="bi bi-pencil"></i>
@@ -123,6 +132,7 @@
                 <th scope="row">16:00 - 17:00 </th>
                 <td>Segunda-feira</td>
                 <td>Munique Nascimento</td>
+                <td>Dr. Rafaela</td>
                 <td>
                     <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaAgendamento">
                         <i class="bi bi-pencil"></i>
@@ -133,6 +143,7 @@
                 <th scope="row">17:00 - 18:00 </th>
                 <td>Segunda-feira</td>
                 <td>Ivan Rodrigues</td>
+                <td>Dr. Bruno</td>
                 <td>
                     <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaAgendamento">
                         <i class="bi bi-pencil"></i>
