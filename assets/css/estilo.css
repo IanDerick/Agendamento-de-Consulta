@@ -2,6 +2,10 @@ body {
     background-color: #f8f9fa;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
+.main-content {
+    padding: 2rem;
+    background-color: #f8f9fa; 
+}
 
 .card-login {
     width: 100%;
@@ -45,12 +49,12 @@ body {
 }
 
 .sidebar .nav-link.active {
-    background-color: #f1f1f1; /* muda o fundo da opção ativa */
-    color: #A2C4C9; /* muda a cor do ícone e do texto */
+    background-color: #ffffff;
+    color: #A2C4C9;
 }
 
 .nav-link.active i {
-    color: #A2C4C9; /* azul Bootstrap para ativo, ou a cor que quiser */
+    color: #A2C4C9;
   }
 
 .sidebar {
@@ -75,8 +79,13 @@ body {
     color: #A2C4C9;
 }
 
-.main-content {
-    padding: 2rem;
+.table {
+    background-color: transparent;
+}
+
+.table th,
+.table td {
+    background-color: transparent;
 }
 
 .form-container {
@@ -87,7 +96,7 @@ body {
 }
 
 .btn-green {
-    background-color: #4CAF50; /* Cor verde para o botão Salvar */
+    background-color: #4CAF50;
     border-color: #4CAF50;
     color: white;
 }
