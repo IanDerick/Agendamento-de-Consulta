@@ -48,7 +48,7 @@
             <div class="d-flex justify-content-between align-items-center list-item pt-10 pb-2 mb-3 border-bottom">
                 <span>Ian Derick</span>
                 <div class="button-group">
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoPaciente">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaPaciente">
                         <i class="bi bi-pencil"></i>
                     </button>
                     <button type="button" class="btn btn-outline-danger btn-sm ms-2">
@@ -59,7 +59,7 @@
             <div class="d-flex justify-content-between align-items-center list-item pt-10 pb-2 mb-3 border-bottom">
                 <span>Bruna Prochnow</span>
                 <div class="button-group">
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoPaciente">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaPaciente">
                         <i class="bi bi-pencil"></i>
                     </button>
                     <a href="#" class="btn btn-outline-danger btn-sm ms-2">
@@ -70,7 +70,7 @@
             <div class="d-flex justify-content-between align-items-center list-item pt-10 pb-2 mb-3 border-bottom">
                 <span>Andrea Silmara</span>
                 <div class="button-group">
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoPaciente">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaPaciente">
                         <i class="bi bi-pencil"></i>
                     </button>
                     <a href="#" class="btn btn-outline-danger btn-sm ms-2">
@@ -81,7 +81,7 @@
             <div class="d-flex justify-content-between align-items-center list-item pt-10 pb-2 mb-3 border-bottom">
                 <span>Ivan Rodrigues</span>
                 <div class="button-group">
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoPaciente">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaPaciente">
                         <i class="bi bi-pencil"></i>
                     </button>
                     <a href="#" class="btn btn-outline-danger btn-sm ms-2">
@@ -92,7 +92,7 @@
             <div class="d-flex justify-content-between align-items-center list-item pt-10 pb-2 mb-3 border-bottom">
                 <span>Caio Santos</span>
                 <div class="button-group">
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoPaciente">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaPaciente">
                         <i class="bi bi-pencil"></i>
                     </button>
                     <a href="#" class="btn btn-outline-danger btn-sm ms-2">
@@ -104,6 +104,7 @@
     </div>
 </div>
     <?php include 'includes/modal_novo_paciente.php'; ?>
+    <?php include 'includes/modal_edita_paciente.php'; ?>
     <script src="/agendamento-de-consulta/assets/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/agendamento-de-consulta/js/script.js"></script>

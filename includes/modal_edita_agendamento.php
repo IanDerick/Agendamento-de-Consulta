@@ -9,32 +9,33 @@
                 <form action="#" method="post">
                     <div class="mb-3">
                         <label for="nomePaciente" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="nomePaciente" name="nomePaciente" required>
+                        <input type="text" class="form-control" id="nomePaciente" name="nomePaciente" >
                     </div>
                     <div class="mb-3">
                         <label for="emailPaciente" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" id="emailPaciente" name="emailPaciente" required>
+                        <input type="email" class="form-control" id="emailPaciente" name="emailPaciente" >
                     </div>
                     <div class="mb-3">
                         <label for="dataConsulta" class="form-label">Data</label>
-                        <input type="date" class="form-control" id="dataConsulta" name="dataConsulta" required>
+                        <input type="date" class="form-control" id="dataConsulta" name="dataConsulta" >
                     </div>
                     <div class="mb-3">
                         <label for="horarioInicial" class="form-label">Horário Inicial</label>
-                        <input type="time" class="form-control" id="horarioInicial" name="horarioInicial" required>
+                        <input type="time" class="form-control" id="horarioInicial" name="horarioInicial" >
                     </div>
                     <div class="mb-3">
                         <label for="horariFinal" class="form-label">Horário Final</label>
-                        <input type="time" class="form-control" id="horariFinal" name="horariFinal" required>
+                        <input type="time" class="form-control" id="horariFinal" name="horariFinal" >
                     </div>
                     <div class="mb-3">
-                        <label for="frutas">Exames</label>
-                        <select id="frutas" name="frutas">
-                            <option value="">Selecione</option>
-                            <option value="maca">Anamnese</option>
-                            <option value="banana">Panoramica</option>
-                            <option value="laranja">Teleradiografia</option>
-                        </select>
+                        <button type="button" class="btn btn-primary" onclick="mostrarInformacoes(event)">
+                            Exames
+                            <i id="iconeSeta" class="bi bi-arrow-down"></i>
+                        </button>
+                        <div id="infoEditaAgendamento" style="display: none;">
+                            <h2>Informações Importantes</h2>
+                            <p>Essas informações só aparecem depois de clicar no botão.</p>
+                        </div>
                     </div>
                 </form>
             </div>

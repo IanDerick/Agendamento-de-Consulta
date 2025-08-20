@@ -104,3 +104,13 @@ body {
     background-color: #45a049;
     border-color: #45a049;
 }
+#info {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+  
+#info.visivel {
+    display: block;
+    opacity: 1;
+}
