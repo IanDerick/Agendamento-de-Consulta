@@ -33,6 +33,12 @@
                                 <i id="iconeSeta" class="bi bi-arrow-down"></i>
                                 </button>
                                 <div id="infoEditaAgendamento">
+                                <li class="itemExames">
+                                    <button type="button" class="btn btn-outline-primary form-control" onclick="document.getElementById('inputArquivo').click()">
+                                        Adicionar exame<i class="bi bi-plus"></i>
+                                    </button>
+                                    <input type="file" id="inputArquivo" name="arquivo" style="display: none;"/>
+                                </li>
                                 <ul class="exames">
                                     <li class="itemExames">
                                         <a href="caminho/para/seu-arquivo.pdf" download>
@@ -62,12 +68,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!--<div class="col-md-3 text-center">
-                            <div class="mb-3">
-                                <i class="bi bi-person-circle display-1 text-secondary"></i>
-                                <small class="d-block mt-2">Nome:</small>
-                            </div>
-                        </div>-->
                     </div>
                 </form>
             </div>
