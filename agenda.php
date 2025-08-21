@@ -1,3 +1,11 @@
+<?php 
+    session_start();
+    if (!isset($_SESSION['usuario'])) {
+        header("Location: index.php");
+        exit();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -12,8 +20,8 @@
 
 <div class="container-fluid">
     <div class="row">
-        <nav class="col-md-1 col-lg-1 d-md-block sidebar">
-            <div class="position-sticky">
+        <nav class="col-md-1 col-lg-1 d-flex flex-column justify-content-between sidebar">
+            <div>
                 <ul class="nav flex-column">
                     <li class="nav-item">
                         <a class="nav-link" href="agenda.php">
@@ -32,8 +40,12 @@
                     </li>
                 </ul>
             </div>
+            <div class="menu-inferior">
+                <a href="logout.php" class="nav-link">
+                    <i class="bi bi-box-arrow-right fs-3"></i>
+                </a>
+            </div>
         </nav>
-
         <main class="col-md-9 col-lg-11 px-md-4 main-content">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
                 <h1 class="h1">Agenda</h1>

@@ -39,10 +39,14 @@ body {
 
 .sidebar {
     background-color: #ffffff;
-    color: #ffffff;
+    color: #000000;
     width: 70px;
     min-height: 100vh;
-    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* <-- ESSENCIAL */
+    align-items: center;
+    padding: 20px 0;
     border-right: 2px solid #000000;
 }
 
@@ -57,6 +61,14 @@ body {
     background-color: #ffffff;
     color: #A2C4C9;
 }
+
+.menu-inferior .nav-link {
+    color: #000000;
+    transition: color 0.2s;
+}
+.menu-inferior .nav-link:hover {
+    color: #dc3545; /* vermelho para indicar sair */
+}   
 
 .nav-link.active i {
     color: #A2C4C9;

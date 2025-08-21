@@ -1,47 +1,29 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Agendamento Online</title>
+<?php
+session_start();
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="assets/css/estilo.css">
-</head>
-<body class="bg-light d-flex justify-content-center align-items-center min-vh-100">
+try {
+    $pdo = new PDO("mysql:host=localhost;port=3307;dbname=meubanco", "root", "root");
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Erro ao se conectar ao banco: " . $e->getMessage());
+}
 
-    <div class="card-login">
-        <h1 class="text-center mb-4">Agendamento Online</h1>
-        <form action="#" method="post">
-            <div class="mb-3">
-                <label for="email" class="form-label">E-mail</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="nome@exemplo.com" required>
-            </div>
-            <div class="mb-3">
-                <label for="senha" class="form-label">Senha</label>
-                <input type="password" class="form-control" id="senha" name="senha" required>
-            </div>
-            <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-lg btn-entrar">Entrar</button>
-            </div>
-            <div class="text-center mt-3">
-                <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modalResetSenha">Esqueci minha senha</button>
-            </div>
-        </form>
-        <hr class="my-4">
-        <div class="text-center mb-3">
-            <span class="text-muted">OU</span>
-        </div>
-        <div class="d-grid gap-2">
-            <button class="btn google-btn btn-lg d-flex align-items-center justify-content-center">
-                <span class="google-icon">G</span>
-                Entrar usando sua conta Google
-            </button>
-        </div>
-    </div>
-    <?php include 'includes/modal_reset_senha.php' ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/agendamento-de-consulta/js/script.js"></script>
-</body>
-</html>
+$email = $_POST["email"] ?? '';
+$email = filter_var($email, FILTER_SANITIZE_EMAIL);
+$password = $_POST["senha"] ?? '';
+
+$stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?");
+$stmt->execute([$email]);
+$usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($usuario && password_verify($password, $usuario['senha'])) {
+    session_regenerate_id(true);
+    $_SESSION['usuario'] = $usuario['nome'];
+    header("Location: agenda.php");
+    exit();
+} else {
+    $_SESSION['error'] = "Usuário ou senha inválido!";
+    header("Location: index.php");
+    exit();
+}
+?>
