@@ -8,7 +8,13 @@
             <div class="modal-body">
                 <form action="#" method="post">
                     <div class="row">
-                        <div class="col-md-9">
+                        <div class="col-md-20">
+                            <div class="d-flex justify-content-center">
+                                <div class="mb-3 text-center">
+                                    <i class="bi bi-person-circle display-1 text-secondary"></i>
+                                    <small class="d-block mt-2 ">Nome:</small>
+                                </div>
+                            </div>
                             <div class="mb-3">
                                 <label for="nomePaciente" class="form-label">Nome:</label>
                                 <input type="text" class="form-control" id="nomePaciente" name="nomePaciente" required>
@@ -20,12 +26,6 @@
                             <div class="mb-3">
                                 <label for="telefonePaciente" class="form-label">Telefone:</label>
                                 <input type="tel" class="form-control" id="telefonePaciente" name="telefonePaciente">
-                            </div>
-                        </div>
-                        <div class="col-md-3 text-center">
-                            <div class="mb-3">
-                                <i class="bi bi-person-circle display-1 text-secondary"></i>
-                                <small class="d-block mt-2">Nome:</small>
                             </div>
                         </div>
                     </div>
