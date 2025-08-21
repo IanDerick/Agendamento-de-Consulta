@@ -37,13 +37,37 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <button type="button" class="btn btn-primary" onclick="mostrarInformacoes(event)">
+                        <button type="button" class="btn btn-primary form-control" onclick="mostrarInformacoes(event)">
                             Exames
                             <i id="iconeSeta" class="bi bi-arrow-down"></i>
                         </button>
-                        <div id="infoEditaAgendamento" style="display: none;">
-                            <h2>Informações Importantes</h2>
-                            <p>Essas informações só aparecem depois de clicar no botão.</p>
+                        <div id="infoEditaAgendamento">
+                        <ul class="exames">
+                            <li class="itemExames">
+                                <a href="caminho/para/seu-arquivo.pdf" download>
+                                    <button class="btn btn-ligh">
+                                        Anamnese 
+                                        <i class="bi bi-download"></i>
+                                    </button>
+                                </a>
+                            </li>
+                            <li class="itemExames">
+                                <a href="caminho/para/seu-arquivo.pdf" download>
+                                    <button class="btn btn-ligh">
+                                        Panoramica 
+                                        <i class="bi bi-download"></i>
+                                    </button>
+                                </a>
+                            </li>
+                            <li class="itemExames">
+                                <a href="caminho/para/seu-arquivo.pdf" download>
+                                    <button class="btn btn-ligh">
+                                        Telerradiografia
+                                        <i class="bi bi-download"></i>
+                                    </button>
+                                </a>
+                            </li>
+                        </ul>
                         </div>
                     </div>
                 </form>

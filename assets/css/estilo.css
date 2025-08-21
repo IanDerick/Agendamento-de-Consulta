@@ -83,8 +83,7 @@ body {
     background-color: transparent;
 }
 
-.table th,
-.table td {
+.table th, .table td {
     background-color: transparent;
 }
 
@@ -113,4 +112,37 @@ body {
 #info.visivel {
     display: block;
     opacity: 1;
+    
+}
+
+#infoEditaAgendamento {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+  
+#infoEditaAgendamento.visivel {
+    max-height: 500px;
+    opacity: 1;
+}
+
+ul.exames {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 0;
+  }
+.itemExames {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.itemExames button i {
+    margin-left: 8px; 
+}
+
+.itemExames a {
+    display: flex;
+    justify-content: center;
 }
