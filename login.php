@@ -23,10 +23,10 @@
                 <input type="password" class="form-control" id="senha" name="senha" required>
             </div>
             <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary btn-lg">Entrar</button>
+                <button type="submit" class="btn btn-lg btn-entrar">Entrar</button>
             </div>
             <div class="text-center mt-3">
-                <a href="#" class="text-decoration-none">Esqueci minha senha</a>
+                <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modalResetSenha">Esqueci minha senha</button>
             </div>
         </form>
         <hr class="my-4">
@@ -40,7 +40,7 @@
             </button>
         </div>
     </div>
-
+    <?php include 'includes/modal_reset_senha.php' ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/agendamento-de-consulta/js/script.js"></script>
 </body>
