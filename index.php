@@ -11,16 +11,17 @@
     <link rel="stylesheet" href="assets/css/estilo.css">
 </head>
 <body class="bg-light d-flex justify-content-center align-items-center min-vh-100">
-    <?php
-        if (isset($_SESSION["error"])) {
-            echo "<p style = 'color:red'>". $_SESSION["error"] ."</p>";
-            unset($_SESSION["error"]);
-        }
-    ?>
+    
     <div class="card-login">
         <h1 class="text-center mb-4">Agendamento Online</h1>
         <form action="login.php" method="post">
             <div class="mb-3">
+                <?php
+                    if (isset($_SESSION["error"])) {
+                        echo "<p style = 'color:red'>". $_SESSION["error"] ."</p>";
+                        unset($_SESSION["error"]);
+                    }
+                ?>
                 <label for="email" class="form-label">E-mail</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="nome@exemplo.com" required>
             </div>
