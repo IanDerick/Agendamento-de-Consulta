@@ -29,13 +29,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="novo_doutor.php">
-                            <i class="bi bi-person-fill fs-3"></i>
+                        <a class="nav-link" href="novo_paciente.php">
+                            <i class="bi bi-people-fill fs-3"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="novo_paciente.php">
-                            <i class="bi bi-people-fill fs-3"></i>
+                        <a class="nav-link" href="novo_doutor.php">
+                            <i class="bi bi-person-fill fs-3"></i>
                         </a>
                     </li>
                 </ul>
