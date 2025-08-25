@@ -2,8 +2,8 @@
 session_start();
 
 try {
-    $pdo = new PDO("mysql:host=localhost;port=3307;dbname=meubanco", "root", "");//casa
-    //$pdo = new PDO("mysql:host=localhost;port=3307;dbname=meubanco", "root", "root"); //faculdade
+    //$pdo = new PDO("mysql:host=localhost;port=3307;dbname=meubanco", "root", "");//casa
+    $pdo = new PDO("mysql:host=localhost;port=3307;dbname=meubanco", "root", "root"); //faculdade
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("Erro ao se conectar ao banco: " . $e->getMessage());
