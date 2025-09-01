@@ -14,11 +14,11 @@
     
     <div class="card-login">
         <h1 class="text-center mb-4">Agendamento Online</h1>
-        <form action="login.php" method="post">
+        <form action="actions/login.php" method="post">
             <div class="mb-3">
                 <?php
                     if (isset($_SESSION["error"])) {
-                        echo "<p style = 'color:red'>". $_SESSION["error"] ."</p>";
+                        echo "<p style='color:red'>". $_SESSION["error"] ."</p>";
                         unset($_SESSION["error"]);
                     }
                 ?>
@@ -47,8 +47,10 @@
             </button>
         </div>
     </div>
-    <?php include 'includes/modal_reset_senha.php' ?>
+
+    <?php include 'includes/modal_reset_senha.php'; ?>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/agendamento-de-consulta/js/script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>

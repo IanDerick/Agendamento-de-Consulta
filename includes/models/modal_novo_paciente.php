@@ -20,6 +20,10 @@
                                 <input type="text" class="form-control" id="nomePaciente" name="nomePaciente" required>
                             </div>
                             <div class="mb-3">
+                                <label for="CPFPaciente" class="form-label">CPF:</label>
+                                <input type="number" class="form-control" id="CPFPaciente" name="CPFPaciente">
+                            </div>
+                            <div class="mb-3">
                                 <label for="emailPaciente" class="form-label">E-mail:</label>
                                 <input type="email" class="form-control" id="emailPaciente" name="emailPaciente" required>
                             </div>

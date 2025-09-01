@@ -1,5 +1,5 @@
 <?php
-require "config/conexaodb.php";
+require "../config/conexaodb.php";
 
 function listarUsuarios() {
     global $pdo;
