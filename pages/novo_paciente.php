@@ -5,7 +5,7 @@
         exit();
     }
     require "../actions/listar_paciente.php";
-    $usuarios = listarUsuarios();
+    $paciente = listarPaciente();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -31,15 +31,15 @@
                     <i class="bi bi-plus me-10"></i>
                 </button>
             </div>
-            <?php if (!empty($usuarios)): ?>
-                <?php foreach ($usuarios as $u): ?>
+            <?php if (!empty($paciente)): ?>
+                <?php foreach ($paciente as $p): ?>
                     <div class="d-flex justify-content-between align-items-center list-item pt-2 pb-2 mb-3 border-bottom">
-                        <span><?= htmlspecialchars($u['nome']) ?></span>
+                        <span><?= htmlspecialchars($p['nome']) ?></span>
                         <div class="button-group">
-                            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaPaciente" data-id="<?= $u['id'] ?>">
+                            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaPaciente" data-id="<?= $p['codpaciente'] ?>">
                                 <i class="bi bi-pencil"></i>
                             </button>
-                            <a href="excluir_usuario.php?id=<?= $u['id'] ?>" class="btn btn-outline-danger btn-sm ms-2" onclick="return confirm('Deseja excluir este usuário?');">
+                            <a href="excluir_usuario.php?id=<?= $p['codpaciente'] ?>" class="btn btn-outline-danger btn-sm ms-2" onclick="return confirm('Deseja excluir este usuário?');">
                                 <i class="bi bi-trash"></i>
                             </a>
                         </div>

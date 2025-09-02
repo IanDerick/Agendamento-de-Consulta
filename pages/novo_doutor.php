@@ -4,6 +4,8 @@
         header("Location: index.php");
         exit();
     }
+    require "../actions/listar_doutor.php";
+    $doutor = listarDoutor();
 ?>
 
 <!DOCTYPE html>
@@ -31,29 +33,23 @@
                 </button>
             </div>
 
-            <div class="d-flex justify-content-between align-items-center list-item pt-10 pb-2 mb-3 border-bottom">
-                <span>Dr. Bruno</span>
-                <div class="button-group">
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoDoutor">
-                        <i class="bi bi-pencil"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm ms-2">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="d-flex justify-content-between align-items-center list-item pt-10 pb-2 mb-3 border-bottom">
-                <span>Dra. Rafaela</span>
-                <div class="button-group">
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNovoDoutor">
-                        <i class="bi bi-pencil"></i>
-                    </button>
-                    <a href="#" class="btn btn-outline-danger btn-sm ms-2">
-                        <i class="bi bi-trash"></i>
-                    </a>
-                </div>
-            </div>
+            <?php if (!empty($doutor)): ?>
+                <?php foreach ($doutor as $d): ?>
+                    <div class="d-flex justify-content-between align-items-center list-item pt-2 pb-2 mb-3 border-bottom">
+                        <span><?= htmlspecialchars($d['nome']) ?></span>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaPaciente" data-id="<?= $d['coddoutor'] ?>">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <a href="excluir_usuario.php?id=<?= $d['coddoutor'] ?>" class="btn btn-outline-danger btn-sm ms-2" onclick="return confirm('Deseja excluir este usuário?');">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class="text-muted">Nenhum usuário cadastrado.</p>
+            <?php endif; ?>
         </main>
     </div>
 </div>
