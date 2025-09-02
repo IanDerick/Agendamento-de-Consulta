@@ -1,9 +1,12 @@
 <?php 
 session_start();
-if (!isset($_SESSION['usuario'])) {
+    if (!isset($_SESSION['usuario'])) {
     header("Location: ../index.php");
     exit();
+    
 }
+    require "../actions/listar_agendamento.php";
+    $agendamentos = listarAgendamento();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -32,37 +35,43 @@ if (!isset($_SESSION['usuario'])) {
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Horário 
-                            <i class="bi bi-clock"></i>
-                        </th>
-                        <th scope="col">Dia-semana 
-                            <i class="bi bi-calendar2-week"></i>
-                        </th>
-                        <th scope="col">Nome
-                             <i class="bi bi-person"></i>
-                            </th>
-                        <th scope="col">Doutor 
-                            <i class="bi bi-person"></i>
-                        </th>
+                        <th scope="col">Horário <i class="bi bi-clock"></i></th>
+                        <th scope="col">Data <i class="bi bi-calendar2-week"></i></th>
+                        <th scope="col">Nome <i class="bi bi-person"></i></th>
+                        <th scope="col">Doutor <i class="bi bi-person"></i></th>
                         <th scope="col"><i class="bi bi-three-dots"></i></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">09:00 - 10:00 </th>
-                        <td>Segunda-feira</td>
-                        <td>Andrea Silmara</td>
-                        <td>Dr. Rafaela</td>
-                        <td>
-                            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaAgendamento">
-                                <i class="bi bi-pencil"></i>
-                            </button>
-                            <a href="excluir_agendamento.php?id=<?= $u['id'] ?>" class="btn btn-outline-danger btn-sm ms-2" onclick="return confirm('Deseja excluir este agendamento?');">
-                                <i class="bi bi-trash"></i>
-                            </button>
+                    <?php if ($agendamentos): ?>
+                        <?php foreach ($agendamentos as $a): ?>
+                            <tr>
+                                <th scope="row">
+                                    <?= htmlspecialchars($a['HORAINICIO']) ?> - <?= htmlspecialchars($a['HORAFIM']) ?>
+                                </th>
+                                <td><?= htmlspecialchars($a['DTCONSULTA']) ?></td>
+                                <td><?= htmlspecialchars($a['PACIENTE']) ?></td>
+                                <td><?= htmlspecialchars($a['DOUTOR']) ?></td>
+                                <td>
+                                    <button type="button"
+                                            class="btn btn-outline-secondary btn-sm"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalEditaAgendamento"
+                                            data-id="<?= (int)$a['IDAGENDAMENTO'] ?>">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
 
-                        </td>
-                    </tr>
+                                    <a href="excluir_agendamento.php?id=<?= (int)$a['IDAGENDAMENTO'] ?>"
+                                    class="btn btn-outline-danger btn-sm ms-2"
+                                    onclick="return confirm('Deseja excluir este agendamento?');">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr><td colspan="5" class="text-center">Nenhum agendamento encontrado</td></tr>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </main>
