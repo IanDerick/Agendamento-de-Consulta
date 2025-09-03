@@ -53,11 +53,7 @@ session_start();
                                 <td><?= htmlspecialchars($a['PACIENTE']) ?></td>
                                 <td><?= htmlspecialchars($a['DOUTOR']) ?></td>
                                 <td>
-                                    <button type="button"
-                                            class="btn btn-outline-secondary btn-sm"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#modalEditaAgendamento"
-                                            data-id="<?= (int)$a['IDAGENDAMENTO'] ?>">
+                                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaAgendamento" data-id="<?= (int)$a['IDAGENDAMENTO'] ?>">
                                         <i class="bi bi-pencil"></i>
                                     </button>
 
