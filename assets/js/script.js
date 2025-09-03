@@ -27,3 +27,21 @@ function mostrarInformacoes(event) {
     icone.classList.add("bi-arrow-down");
   }
 }
+document.addEventListener('DOMContentLoaded', function () {
+  const modalEdita = document.getElementById('modalEditaPaciente');
+  modalEdita.addEventListener('show.bs.modal', function (event) {
+      const button = event.relatedTarget;
+
+      const id = button.getAttribute('data-id');
+      const nome = button.getAttribute('data-nome');
+      const cpf = button.getAttribute('data-cpf');
+      const email = button.getAttribute('data-email');
+      const telefone = button.getAttribute('data-telefone');
+
+      modalEdita.querySelector('#codpaciente').value = id;
+      modalEdita.querySelector('#nome').value = nome;
+      modalEdita.querySelector('#cpf').value = cpf;
+      modalEdita.querySelector('#email').value = email;
+      modalEdita.querySelector('#telefone').value = telefone;
+  });
+});
