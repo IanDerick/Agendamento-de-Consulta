@@ -27,6 +27,21 @@
         <main class="col-md-9 col-lg-11 px-md-4 main-content">
              <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h1">Pacientes</h1>
+                    <?php if (isset($_SESSION['success'])): ?>
+                        <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                            <?= $_SESSION['success']; ?>
+                            <?php unset($_SESSION['success']); ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (isset($_SESSION['error'])): ?>
+                        <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+                            <?= $_SESSION['error']; ?>
+                            <?php unset($_SESSION['error']); ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <?php endif; ?>
                 <button type="button" class="btn btn-outline-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#modalNovoPaciente">
                     <i class="bi bi-plus me-10"></i>
                 </button>
@@ -39,7 +54,7 @@
                             <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaPaciente" data-id="<?= $p['codpaciente'] ?>">
                                 <i class="bi bi-pencil"></i>
                             </button>
-                            <a href="excluir_usuario.php?id=<?= $p['codpaciente'] ?>" class="btn btn-outline-danger btn-sm ms-2" onclick="return confirm('Deseja excluir este usuário?');">
+                            <a href="../actions/exclui_paciente.php?codpaciente=<?= htmlspecialchars($p['codpaciente']) ?>" class="btn btn-outline-danger btn-sm ms-2" onclick="return confirm('Deseja excluir este usuário?');">
                                 <i class="bi bi-trash"></i>
                             </a>
                         </div>
