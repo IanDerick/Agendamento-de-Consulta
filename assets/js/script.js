@@ -43,5 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
       modalEdita.querySelector('#cpf').value = cpf;
       modalEdita.querySelector('#email').value = email;
       modalEdita.querySelector('#telefone').value = telefone;
+      
+      modalEdita.querySelector('#previewNome').textContent = nome;
   });
 });

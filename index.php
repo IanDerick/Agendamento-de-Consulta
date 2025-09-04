@@ -36,16 +36,6 @@
                 <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modalResetSenha">Esqueci minha senha</button>
             </div>
         </form>
-        <hr class="my-4">
-        <div class="text-center mb-3">
-            <span class="text-muted">OU</span>
-        </div>
-        <div class="d-grid gap-2">
-            <button class="btn google-btn btn-lg d-flex align-items-center justify-content-center">
-                <span class="google-icon">G</span>
-                Entrar usando sua conta Google
-            </button>
-        </div>
     </div>
 
     <?php include 'includes/models/modal_reset_senha.php'; ?>

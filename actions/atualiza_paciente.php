@@ -17,11 +17,11 @@
     try {
         $stmt = $pdo->prepare("UPDATE PACIENTE SET nome = :nome, cpf = :cpf, email = :email, telefone = :telefone WHERE CODPACIENTE = :id");
         $stmt->execute([
+            ':id' => $id,
             ':nome' => $nome,
             ':cpf' => $cpf,
             ':email' => $email,
             ':telefone' => $telefone,
-            ':id' => $id
         ]);
         $_SESSION['success'] = "Paciente atualizado com sucesso!";
     } catch (PDOException $e) {
