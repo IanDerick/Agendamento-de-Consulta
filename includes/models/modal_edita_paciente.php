@@ -38,38 +38,38 @@
                                 <i id="iconeSeta" class="bi bi-arrow-down"></i>
                                 </button>
                                 <div id="infoEditaAgendamento">
-                                <li class="itemExames">
-                                    <button type="button" class="btn btn-outline-primary form-control" onclick="document.getElementById('inputArquivo').click()">
-                                        Adicionar exame<i class="bi bi-plus"></i>
-                                    </button>
-                                    <input type="file" id="inputArquivo" name="arquivo" style="display: none;"/>
-                                </li>
-                                <ul class="exames">
                                     <li class="itemExames">
-                                        <a href="caminho/para/seu-arquivo.pdf" download>
-                                            <button class="btn btn-ligh">
-                                                Anamnese 
-                                                <i class="bi bi-download"></i>
-                                            </button>
-                                        </a>
+                                        <button type="button" class="btn btn-outline-primary form-control" onclick="document.getElementById('inputArquivo').click()">
+                                            Adicionar exame<i class="bi bi-plus"></i>
+                                        </button>
+                                        <input type="file" id="inputArquivo" name="arquivo" style="display: none;"/>
                                     </li>
-                                    <li class="itemExames">
-                                        <a href="caminho/para/seu-arquivo.pdf" download>
-                                            <button class="btn btn-ligh">
-                                                Panoramica 
-                                                <i class="bi bi-download"></i>
-                                            </button>
-                                        </a>
-                                    </li>
-                                    <li class="itemExames">
-                                        <a href="caminho/para/seu-arquivo.pdf" download>
-                                            <button class="btn btn-ligh">
-                                                Telerradiografia
-                                                <i class="bi bi-download"></i>
-                                            </button>
-                                        </a>
-                                    </li>
-                                </ul>
+                                    <ul class="exames">
+                                        <li class="itemExames">
+                                            <a href="caminho/para/seu-arquivo.pdf" download>
+                                                <button class="btn btn-ligh">
+                                                    Anamnese 
+                                                    <i class="bi bi-download"></i>
+                                                </button>
+                                            </a>
+                                        </li>
+                                        <li class="itemExames">
+                                            <a href="caminho/para/seu-arquivo.pdf" download>
+                                                <button class="btn btn-ligh">
+                                                    Panoramica 
+                                                    <i class="bi bi-download"></i>
+                                                </button>
+                                            </a>
+                                        </li>
+                                        <li class="itemExames">
+                                            <a href="caminho/para/seu-arquivo.pdf" download>
+                                                <button class="btn btn-ligh">
+                                                    Telerradiografia
+                                                    <i class="bi bi-download"></i>
+                                                </button>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
