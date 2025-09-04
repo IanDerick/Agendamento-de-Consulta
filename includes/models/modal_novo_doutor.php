@@ -6,31 +6,32 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="formNovoDoutor" action="#" method="post">
+                <form id="formNovoDoutor" action="../actions/adiciona_doutor.php" method="post">
                     <div class="mb-3">
-                        <label for="nomeDoutor" class="form-label">Nome:</label>
-                        <input type="text" class="form-control" id="nomeDoutor" name="nomeDoutor" required>
+                        <label for="nome" class="form-label">Nome:</label>
+                        <input type="text" class="form-control" id="nomeDoutor" name="nome" required>
                     </div>
                     <div class="mb-3">
-                        <label for="emailDoutor" class="form-label">E-mail:</label>
-                        <input type="email" class="form-control" id="emailDoutor" name="emailDoutor" required>
+                        <label for="email" class="form-label">E-mail:</label>
+                        <input type="email" class="form-control" id="emailDoutor" name="email" required>
                     </div>
                     <div class="mb-3">
-                        <label for="senhaDoutor" class="form-label">Senha:</label>
-                        <input type="password" class="form-control" id="senhaDoutor" name="senhaDoutor" required>
+                        <label for="senha" class="form-label">Senha:</label>
+                        <input type="password" class="form-control" id="senhaDoutor" name="senha" required>
                     </div>
                     <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="alterarSenha" name="alterarSenha">
-                        <label class="form-check-label" for="alterarSenha">Ativo?</label>
+                        <input type="radio" class="form-check-input" id="ativo" name="status" value="1">
+                        <label class="form-check-label" for="ativo">Ativo</label>
                     </div>
-                    <div class="mb-3">
-                        <label for="corDoutor" class="form-label">Cor do Doutor</label>
-                        <input type="color" class="form-control form-control-color" id="corDoutor" name="corDoutor">
+                    <div class="mb-3 form-check">
+                        <input type="radio" class="form-check-input" id="inativo" name="status" value="0">
+                        <label class="form-check-label" for="inativo">Inativo</label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                        <button type="submit" form="formNovoDoutor" class="btn btn-green">Salvar</button>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" form="formNovoDoutor" class="btn btn-green">Salvar</button>
             </div>
         </div>
     </div>

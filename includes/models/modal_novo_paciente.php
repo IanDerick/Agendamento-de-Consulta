@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form  id="formNovoPaciente" action="../actions/adiciona_paciente.php" method="post">
+                <form id="formNovoPaciente" action="../actions/adiciona_paciente.php" method="post">
                     <div class="row">
                         <div class="col-md-20">
                             <div class="d-flex justify-content-center">

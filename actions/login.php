@@ -11,13 +11,23 @@ $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?");
 $stmt->execute([$email]);
 $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
+$stmt = $pdo->prepare("SELECT * FROM doutor WHERE email = ?");
+$stmt->execute([$email]);
+$doutor = $stmt->fetch(PDO::FETCH_ASSOC);
+
 if ($usuario && password_verify($password, $usuario['senha'])) {
     session_regenerate_id(true);
     $_SESSION['usuario'] = $usuario['nome'];
     header("Location: ../pages/agenda.php");
     exit();
-} else {
+} elseif ($doutor && password_verify($password, $doutor['senha']) && $doutor['status'] == 1 ) {
+    session_regenerate_id(true);
+    $_SESSION['doutor'] = $doutor['nome'];
+    header("Location: ../pages/agenda.php");
+    exit();
+} else{
     $_SESSION['error'] = "Usuário ou senha inválido!";
     header("Location: ../index.php");
     exit();
 }
+?>
