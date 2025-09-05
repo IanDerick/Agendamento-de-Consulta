@@ -15,14 +15,18 @@ $stmt = $pdo->prepare("SELECT * FROM doutor WHERE email = ?");
 $stmt->execute([$email]);
 $doutor = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if ($usuario && password_verify($password, $usuario['senha'])) {
+if ($usuario && password_verify($password, $usuario['senha']) || $doutor && password_verify($password, $doutor['senha']) && $doutor['status'] == 1) {
     session_regenerate_id(true);
-    $_SESSION['usuario'] = $usuario['nome'];
-    header("Location: ../pages/agenda.php");
-    exit();
-} elseif ($doutor && password_verify($password, $doutor['senha']) && $doutor['status'] == 1 ) {
-    session_regenerate_id(true);
-    $_SESSION['doutor'] = $doutor['nome'];
+    $_SESSION['usuario'] = [
+        'id' => $usuario['id'],
+        'nome' => $usuario['nome'],
+        'tipo' => 'usuario'
+    ];
+    $_SESSION['doutor'] = [
+        'id' => $doutor['id'],
+        'nome' => $doutor['nome'],
+        'status' => 'usuario'
+    ];
     header("Location: ../pages/agenda.php");
     exit();
 } else{
