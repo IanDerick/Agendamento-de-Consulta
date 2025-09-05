@@ -47,3 +47,26 @@ document.addEventListener('DOMContentLoaded', function () {
       modalEdita.querySelector('#previewNome').textContent = nome;
   });
 });
+document.addEventListener('DOMContentLoaded', function () {
+  const modalEdita = document.getElementById('modalEditaDoutor');
+  modalEdita.addEventListener('show.bs.modal', function (event) {
+      const button = event.relatedTarget;
+
+      const id = button.getAttribute('data-id');
+      const nome = button.getAttribute('data-nome');
+      const email = button.getAttribute('data-email');
+      const status = button.getAttribute('data-status');
+
+      modalEdita.querySelector('#coddoutor').value = id;
+      modalEdita.querySelector('#nome').value = nome;
+      modalEdita.querySelector('#email').value = email;
+      if (status == '1') {
+          modalEdita.querySelector('#ativo').checked = true;
+          modalEdita.querySelector('#inativo').checked = false;
+      } else {
+          modalEdita.querySelector('#ativo').checked = false;
+          modalEdita.querySelector('#inativo').checked = true;
+      }
+      modalEdita.querySelector('#previewNome').textContent = nome;
+  });
+});

@@ -51,13 +51,13 @@
             <?php if (!empty($doutor)): ?>
                 <?php foreach ($doutor as $d): ?>
                     <div class="d-flex justify-content-between align-items-center list-item pt-2 pb-2 mb-3 border-bottom">
-                        <span><?= htmlspecialchars($d['nome']) ?></span>
+                        <span><?=htmlspecialchars($d['nome']) ?></span>
                         <div class="button-group">
                             <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditaDoutor" 
-                                    data-id="<?= $p['coddoutor'] ?>"
-                                    data-nome="<?= htmlspecialchars($p['nome']) ?>"
-                                    data-email="<?= htmlspecialchars($p['email']) ?>"
-                                    data-telefone="<?= htmlspecialchars($p['status']) ?>">
+                                    data-id="<?= $d['coddoutor'] ?>"
+                                    data-nome="<?= htmlspecialchars($d['nome']) ?>"
+                                    data-email="<?= htmlspecialchars($d['email']) ?>"
+                                    data-status="<?= htmlspecialchars($d['status']) ?>">
                                 <i class="bi bi-pencil"></i>
                             </button>
                             <a href="../actions/exclui_doutor.php?coddoutor=<?= htmlspecialchars($d['coddoutor']) ?>" class="btn btn-outline-danger btn-sm ms-2" onclick="return confirm('Deseja excluir este doutor?');">
