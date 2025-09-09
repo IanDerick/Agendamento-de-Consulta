@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "../config/conexaodb.php";
 
 $nome = $_GET["nome"] ?? "";

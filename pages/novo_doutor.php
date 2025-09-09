@@ -26,7 +26,7 @@
             <?php include '../includes/navbar.php'; ?>
         </nav>
         <main class="col-md-9 col-lg-11 px-md-4 main-content">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
                 <h1 class="h1">Doutores</h1>
                     <?php if (isset($_SESSION['success'])): ?>
                         <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">

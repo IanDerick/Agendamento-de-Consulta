@@ -32,10 +32,8 @@
                     <div class="mb-3">
                         <label for="cars" class="form-label">Doutor</label>
                         <br>
-                        <select name="SelectDoutor" id="SelectDoutor" class="form-control">
-                            <option value="#">Selecione</option>
-                            <option value="1">Dra. Bruna Camille Prochnow</option>
-                            <option value="2">Dra. Rafaela</option>
+                        <select name="SelectDoutor" id="SelectDoutor" class="form-control" required>
+                            <option value="">Selecione</option>
                         </select>
                     </div>
                     <div class="modal-footer">

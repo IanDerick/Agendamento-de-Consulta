@@ -115,4 +115,41 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
   }
+
+  // --------------------------
+  // 6. Popular select Doutor no modal_novo_agendamento.php
+  // --------------------------
+  const selectDoutor = document.getElementById("SelectDoutor");
+
+  function carregarDoutores() {
+    if (!selectDoutor) return;
+
+    fetch("../actions/buscar_doutor.php")
+      .then(res => res.json())
+      .then(data => {
+        selectDoutor.innerHTML = '<option value="">Selecione</option>'; // limpa e adiciona opção padrão
+
+        if (Array.isArray(data) && data.length > 0) {
+          data.forEach(doutor => {
+            const option = document.createElement("option");
+            option.value = doutor.CODDOUTOR;
+            option.textContent = doutor.NOME;
+            selectDoutor.appendChild(option);
+          });
+        } else {
+          const option = document.createElement("option");
+          option.value = "";
+          option.textContent = "Nenhum doutor cadastrado";
+          selectDoutor.appendChild(option);
+        }
+      })
+      .catch(err => {
+        console.error("Erro ao carregar doutores:", err);
+        selectDoutor.innerHTML = '<option value="">Erro ao carregar doutores</option>';
+      });
+  }
+
+  // **CHAMADA PARA CARREGAR OS DOUTORES**
+  carregarDoutores();
+
 });

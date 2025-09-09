@@ -1,10 +1,9 @@
 <?php 
-session_start();
+    session_start();
     if (!isset($_SESSION['usuario'])) {
-    header("Location: ../index.php");
-    exit();
-    
-}
+        header("Location: ../index.php");
+        exit(); 
+    }
     require "../actions/listar_agendamento.php";
     $agendamentos = listarAgendamento();
 ?>
@@ -28,6 +27,21 @@ session_start();
         <main class="col-md-9 col-lg-11 px-md-4 main-content">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
                 <h1 class="h1">Agenda</h1>
+                <?php if (isset($_SESSION['success'])): ?>
+                    <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                        <?= $_SESSION['success']; ?>
+                        <?php unset($_SESSION['success']); ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php endif; ?>
+
+                <?php if (isset($_SESSION['error'])): ?>
+                    <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+                        <?= $_SESSION['error']; ?>
+                        <?php unset($_SESSION['error']); ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php endif; ?>
                 <button type="button" class="btn btn-outline-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#modalNovoAgendamento">
                     <i class="bi bi-plus me-10"></i>
                 </button>
