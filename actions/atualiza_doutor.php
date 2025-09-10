@@ -16,30 +16,39 @@
         header("Location: ../pages/novo_doutor.php");
         exit();
     }
-    $sql = "UPDATE DOUTOR SET nome = :nome, email = :email, status = :status";
-    $params = [
-        ':id' => $id,
-        ':nome' => $nome,
-        ':email' => $email,
-        ':status' => $status
-    ];
-    if ($novaSenha === $confirmNovaSenha) {
-        $params[':senha'] = password_hash($novaSenha, PASSWORD_DEFAULT);
-        $sql .= ", senha = :senha";
+    if ($id && $nome && $email && $status) {
+        $sql = "UPDATE DOUTOR SET nome = :nome, email = :email, status = :status";
+        $params = [
+            ':id' => $id,
+            ':nome' => $nome,
+            ':email' => $email,
+            ':status' => $status
+        ];
+    
+        if (!empty($novaSenha) || !empty($confirmNovaSenha)) {
+            if ($novaSenha === $confirmNovaSenha) {
+                $params[':senha'] = password_hash($novaSenha, PASSWORD_DEFAULT);
+                $sql .= ", senha = :senha";
+            } else {
+                $_SESSION['error'] = "As senhas não conferem!";
+                header("Location: ../pages/novo_doutor.php");
+                exit();
+            }
+        }
+    
+        $sql .= " WHERE CODDOUTOR = :id";
+    
+        try {
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute($params);
+            $_SESSION['success'] = "Doutor atualizado com sucesso!";
+        } catch (PDOException $e) {
+            $_SESSION['error'] = "Erro ao atualizar no banco: " . $e->getMessage();
+        }
     } else {
-        $_SESSION['error'] = "As senhas não conferem!";
-        header("Location: ../pages/novo_doutor.php");
-        exit();
+        $_SESSION['error'] = "Preencha todos os campos obrigatórios!";
     }
-    $sql .= " WHERE CODDOUTOR = :id";
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute($params);
-        $_SESSION['success'] = "Doutor atualizado com sucesso!";
-    } catch (PDOException $e) {
-        $_SESSION['error'] = "Erro ao atualizar no banco: " . $e->getMessage();
-    }
-
+        
     header("Location: ../pages/novo_doutor.php");
     exit();
 ?>
