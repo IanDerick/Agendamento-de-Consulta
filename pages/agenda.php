@@ -47,8 +47,8 @@
                     <i class="bi bi-plus me-10"></i>
                 </button>
             </div>
-            <form method="get" class="d-flex mb-3">
-                <input type="date" name="data" class="form-control me-2" 
+            <form method="get" class="d-flex justify-content-end mb-3">
+                <input type="date" name="data" class="form-control me-2" style="max-width: 180px;"  
                     value="<?= htmlspecialchars($_GET['data'] ?? date('Y-m-d')) ?>">
                 <button type="submit" class="btn btn-primary">Filtrar</button>
             </form>

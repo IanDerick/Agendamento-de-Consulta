@@ -6,7 +6,7 @@
         global $pdo;
         try {
             if (!$data) {
-                $data = date('Y-m-d'); // padrão: hoje
+                $data = date('d-m-Y');
             }
     
             $sql = "SELECT 
