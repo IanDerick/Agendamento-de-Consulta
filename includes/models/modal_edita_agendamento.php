@@ -6,37 +6,36 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="#" method="post">
+                <form id="formEditaAgendamento" action="#" method="post">
+                    <input type="hidden" id="idagendamento" name="idagendamento">
                     <div class="mb-3">
-                        <label for="nomePaciente" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="nomePaciente" name="nomePaciente" >
+                        <label for="nome" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="nome" name="nome" >
                     </div>
                     <div class="mb-3">
-                        <label for="emailPaciente" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" id="emailPaciente" name="emailPaciente" >
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="email" name="email" >
                     </div>
                     <div class="mb-3">
-                        <label for="dataConsulta" class="form-label">Data</label>
-                        <input type="date" class="form-control" id="dataConsulta" name="dataConsulta" >
+                        <label for="dtconsulta" class="form-label">Data</label>
+                        <input type="date" class="form-control" id="dtconsulta" name="dtconsulta" >
                     </div>
                     <div class="mb-3">
-                        <label for="horarioInicial" class="form-label">Horário Inicial</label>
-                        <input type="time" class="form-control" id="horarioInicial" name="horarioInicial" >
+                        <label for="horainicio" class="form-label">Horário Inicial</label>
+                        <input type="time" class="form-control" id="horainicio" name="horainicio" >
                     </div>
                     <div class="mb-3">
-                        <label for="horariFinal" class="form-label">Horário Final</label>
-                        <input type="time" class="form-control" id="horariFinal" name="horariFinal" >
+                        <label for="horafim" class="form-label">Horário Final</label>
+                        <input type="time" class="form-control" id="horafim" name="horafim" >
                     </div>
                     <div class="mb-3">
                         <label for="cars" class="form-label">Doutor</label>
                         <br>
-                        <select name="SelectDoutor" id="SelectDoutor"  class="form-control">
-                            <option value="#">Selecione</option>
-                            <option value="#1">Dr. Bruno</option>
-                            <option value="#2">Dra. Rafaela</option>
+                        <select name="SelectDoutor" id="selectDoutorEdita" class="form-control" required>
+                            <option value="">Selecione</option>
                         </select>
                     </div>
-                    <div class="mb-3">
+                    <!--<div class="mb-3">
                         <button type="button" class="btn btn-primary form-control" onclick="mostrarInformacoes(event)">
                             Exames
                             <i id="iconeSeta" class="bi bi-arrow-down"></i>
@@ -75,11 +74,11 @@
                             </li>
                         </ul>
                         </div>
+                    </div>-->
+                    <div class="modal-footer">
+                        <button type="submit" form="formEditaAgendamento" class="btn btn-green">Salvar</button>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" form="formNovoDoutor" class="btn btn-green">Salvar</button>
             </div>
         </div>
     </div>

@@ -9,6 +9,7 @@
                         AGENDAMENTO.IDAGENDAMENTO,
                         PACIENTE.CODPACIENTE,
                         PACIENTE.NOME AS PACIENTE,
+                        PACIENTE.EMAIL AS EMAIL,
                         DATE_FORMAT(DTCONSULTA, '%d/%m/%Y') AS DTCONSULTA,
                         DATE_FORMAT(HORAINICIO, '%H:%i') AS HORAINICIO,
                         DATE_FORMAT(HORAFIM, '%H:%i')   AS HORAFIM,

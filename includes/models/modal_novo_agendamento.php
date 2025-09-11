@@ -32,7 +32,7 @@
                     <div class="mb-3">
                         <label for="cars" class="form-label">Doutor</label>
                         <br>
-                        <select name="SelectDoutor" id="SelectDoutor" class="form-control" required>
+                        <select name="SelectDoutor" id="selectDoutorNovo" class="form-control" required>
                             <option value="">Selecione</option>
                         </select>
                     </div>

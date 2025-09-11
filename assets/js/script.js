@@ -121,35 +121,71 @@ document.addEventListener("DOMContentLoaded", function () {
   // --------------------------
   const selectDoutor = document.getElementById("SelectDoutor");
 
-  function carregarDoutores() {
-    if (!selectDoutor) return;
+// Função para carregar doutores em qualquer select
+function carregarDoutores(selectElement) {
+  if (!selectElement) return;
 
-    fetch("../actions/buscar_doutor.php")
-      .then(res => res.json())
-      .then(data => {
-        selectDoutor.innerHTML = '<option value="">Selecione</option>'; // limpa e adiciona opção padrão
-
-        if (Array.isArray(data) && data.length > 0) {
-          data.forEach(doutor => {
-            const option = document.createElement("option");
-            option.value = doutor.CODDOUTOR;
-            option.textContent = doutor.NOME;
-            selectDoutor.appendChild(option);
-          });
-        } else {
+  fetch("../actions/buscar_doutor.php")
+    .then(res => res.json())
+    .then(data => {
+      selectElement.innerHTML = '<option value="">Selecione</option>';
+      if (Array.isArray(data) && data.length > 0) {
+        data.forEach(doutor => {
           const option = document.createElement("option");
-          option.value = "";
-          option.textContent = "Nenhum doutor cadastrado";
-          selectDoutor.appendChild(option);
-        }
-      })
-      .catch(err => {
-        console.error("Erro ao carregar doutores:", err);
-        selectDoutor.innerHTML = '<option value="">Erro ao carregar doutores</option>';
-      });
-  }
+          option.value = doutor.CODDOUTOR;
+          option.textContent = doutor.NOME;
+          selectElement.appendChild(option);
+        });
+      } else {
+        const option = document.createElement("option");
+        option.value = "";
+        option.textContent = "Nenhum doutor cadastrado";
+        selectElement.appendChild(option);
+      }
+    })
+    .catch(err => {
+      console.error("Erro ao carregar doutores:", err);
+      selectElement.innerHTML = '<option value="">Erro ao carregar doutores</option>';
+    });
+}
 
-  // **CHAMADA PARA CARREGAR OS DOUTORES**
-  carregarDoutores();
+// --------------------------
+// 7. Modal Edita Agendamento
+// --------------------------
+const modalEditaAgendamento = document.getElementById("modalEditaAgendamento");
+if (modalEditaAgendamento) {
+  modalEditaAgendamento.addEventListener("show.bs.modal", function (event) {
+    const button = event.relatedTarget;
+
+    modalEditaAgendamento.querySelector("#idagendamento").value = button.getAttribute("data-idagendamento");
+    modalEditaAgendamento.querySelector("#nome").value = button.getAttribute("data-nome");
+    modalEditaAgendamento.querySelector("#email").value = button.getAttribute("data-email");
+
+    // Data dd/mm/yyyy → yyyy-mm-dd
+    const dataConsulta = button.getAttribute("data-data");
+    if (dataConsulta) {
+      let partes = dataConsulta.split("/");
+      if (partes.length === 3) {
+        modalEditaAgendamento.querySelector("#dtconsulta").value = `${partes[2]}-${partes[1]}-${partes[0]}`;
+      }
+    }
+
+    modalEditaAgendamento.querySelector("#horainicio").value = button.getAttribute("data-horainicio");
+    modalEditaAgendamento.querySelector("#horafim").value = button.getAttribute("data-horafim");
+
+    // Carregar doutores e selecionar automaticamente
+    const selectDoutorEdita = modalEditaAgendamento.querySelector("#selectDoutorEdita");
+    const coddoutor = button.getAttribute("data-doutor");
+
+    carregarDoutores(selectDoutorEdita);
+    setTimeout(() => {
+      if (selectDoutorEdita) selectDoutorEdita.value = coddoutor;
+    }, 150);
+  });
+}
+
+// Carregar doutores no modal Novo Agendamento
+const selectDoutorNovo = document.getElementById("selectDoutorNovo");
+carregarDoutores(selectDoutorNovo);
 
 });
