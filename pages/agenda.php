@@ -69,6 +69,7 @@
                                 <td>
                                     <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal"  data-bs-target="#modalEditaAgendamento"
                                             data-idagendamento="<?= $a['IDAGENDAMENTO'] ?>"
+                                            data-codpaciente="<?= htmlspecialchars($a['CODPACIENTE']) ?>"
                                             data-nome="<?= htmlspecialchars($a['PACIENTE']) ?>"
                                             data-email="<?= htmlspecialchars($a['EMAIL'] ?? '') ?>"
                                             data-data="<?= htmlspecialchars($a['DTCONSULTA']) ?>"

@@ -6,11 +6,13 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="formEditaAgendamento" action="#" method="post">
+                <form id="formEditaAgendamento" action="../actions/atualiza_agendamento.php" method="post">
                     <input type="hidden" id="idagendamento" name="idagendamento">
-                    <div class="mb-3">
+                    <div class="mb-3 position-relative">
                         <label for="nome" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="nome" name="nome" >
+                        <input type="text" class="form-control" id="nome" name="nome" autocomplete="off" required>
+                        <input type="hidden" id="codPacienteHidden" name="codpaciente">
+                        <div id="sugestoesPaciente" class="list-group position-absolute w-100"></div>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">E-mail</label>
@@ -31,7 +33,7 @@
                     <div class="mb-3">
                         <label for="cars" class="form-label">Doutor</label>
                         <br>
-                        <select name="SelectDoutor" id="selectDoutorEdita" class="form-control" required>
+                        <select name="selectDoutorEdita" id="selectDoutorEdita" class="form-control" required>
                             <option value="">Selecione</option>
                         </select>
                     </div>

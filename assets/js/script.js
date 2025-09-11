@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
       modalEditaDoutor.querySelector("#nome").value = button.getAttribute("data-nome");
       modalEditaDoutor.querySelector("#email").value = button.getAttribute("data-email");
 
-      if (button.getAttribute("data-status") == "1") {
+      if (button.getAttribute("data-status") === "1") {
         modalEditaDoutor.querySelector("#ativo").checked = true;
       } else {
         modalEditaDoutor.querySelector("#inativo").checked = true;
@@ -73,14 +73,19 @@ document.addEventListener("DOMContentLoaded", function () {
   // --------------------------
   // 5. Autocomplete Paciente
   // --------------------------
-  const inputPaciente = document.getElementById("nome");
-  const sugestoesPaciente = document.getElementById("sugestoesPaciente");
-  const emailPaciente = document.getElementById("email");
-  const codPacienteHidden = document.getElementById("codPacienteHidden"); // campo hidden opcional
+  function inicializarAutocomplete(container) {
+    const inputPaciente = container.querySelector("input[name='nome']");
+    const sugestoesPaciente = container.querySelector("#sugestoesPaciente");
+    const emailPaciente = container.querySelector("input[name='email']");
+    const codPacienteHidden = container.querySelector("#codPacienteHidden");
 
-  if (inputPaciente && sugestoesPaciente) {
+    if (!inputPaciente || !sugestoesPaciente) return;
+
     inputPaciente.addEventListener("keyup", () => {
-      let termo = inputPaciente.value.trim();
+      const termo = inputPaciente.value.trim();
+
+      // Limpa campo codPacienteHidden se usuário digitar algo novo
+      if (codPacienteHidden) codPacienteHidden.value = "";
 
       if (termo.length < 2) {
         sugestoesPaciente.innerHTML = "";
@@ -92,8 +97,8 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(data => {
           sugestoesPaciente.innerHTML = "";
 
-          if (data.length === 0) {
-            let item = document.createElement("div");
+          if (!Array.isArray(data) || data.length === 0) {
+            const item = document.createElement("div");
             item.classList.add("list-group-item", "disabled");
             item.textContent = "Nenhum paciente encontrado";
             sugestoesPaciente.appendChild(item);
@@ -101,91 +106,120 @@ document.addEventListener("DOMContentLoaded", function () {
           }
 
           data.forEach(paciente => {
-            let item = document.createElement("a");
+            const item = document.createElement("a");
             item.classList.add("list-group-item", "list-group-item-action");
+            item.href = "#";
             item.textContent = paciente.nome;
-            item.onclick = () => {
+
+            item.addEventListener("click", (e) => {
+              e.preventDefault();
               inputPaciente.value = paciente.nome;
-              if (emailPaciente) emailPaciente.value = paciente.email;
-              if (codPacienteHidden) codPacienteHidden.value = paciente.codpaciente; // guarda o ID
+              if (emailPaciente) emailPaciente.value = paciente.email || "";
+              if (codPacienteHidden) codPacienteHidden.value = paciente.codpaciente || "";
               sugestoesPaciente.innerHTML = "";
-            };
+            });
+
             sugestoesPaciente.appendChild(item);
           });
+        })
+        .catch(err => {
+          console.error("Erro ao buscar pacientes:", err);
+          sugestoesPaciente.innerHTML = '<div class="list-group-item disabled">Erro na busca</div>';
         });
     });
   }
 
   // --------------------------
-  // 6. Popular select Doutor no modal_novo_agendamento.php
+  // 6. Popular select Doutor
   // --------------------------
-  const selectDoutor = document.getElementById("SelectDoutor");
+  function carregarDoutores(selectElement) {
+    if (!selectElement) return;
 
-// Função para carregar doutores em qualquer select
-function carregarDoutores(selectElement) {
-  if (!selectElement) return;
+    fetch("../actions/buscar_doutor.php")
+      .then(res => res.json())
+      .then(data => {
+        selectElement.innerHTML = '<option value="">Selecione</option>';
 
-  fetch("../actions/buscar_doutor.php")
-    .then(res => res.json())
-    .then(data => {
-      selectElement.innerHTML = '<option value="">Selecione</option>';
-      if (Array.isArray(data) && data.length > 0) {
-        data.forEach(doutor => {
+        if (Array.isArray(data) && data.length > 0) {
+          data.forEach(doutor => {
+            const option = document.createElement("option");
+            option.value = doutor.CODDOUTOR;
+            option.textContent = doutor.NOME;
+            selectElement.appendChild(option);
+          });
+        } else {
           const option = document.createElement("option");
-          option.value = doutor.CODDOUTOR;
-          option.textContent = doutor.NOME;
+          option.value = "";
+          option.textContent = "Nenhum doutor cadastrado";
           selectElement.appendChild(option);
-        });
-      } else {
-        const option = document.createElement("option");
-        option.value = "";
-        option.textContent = "Nenhum doutor cadastrado";
-        selectElement.appendChild(option);
-      }
-    })
-    .catch(err => {
-      console.error("Erro ao carregar doutores:", err);
-      selectElement.innerHTML = '<option value="">Erro ao carregar doutores</option>';
+        }
+      })
+      .catch(err => {
+        console.error("Erro ao carregar doutores:", err);
+        selectElement.innerHTML = '<option value="">Erro ao carregar doutores</option>';
+      });
+  }
+
+  // --------------------------
+  // Variáveis para modais usados abaixo
+  // --------------------------
+  const modalNovoAgendamento = document.getElementById("modalNovoAgendamento");
+  const modalEditaAgendamento = document.getElementById("modalEditaAgendamento");
+
+  // --------------------------
+  // Inicializar autocomplete nos modais de agendamento
+  // --------------------------
+  if (modalNovoAgendamento) {
+    modalNovoAgendamento.addEventListener("shown.bs.modal", () => {
+      inicializarAutocomplete(modalNovoAgendamento);
     });
-}
+  }
 
-// --------------------------
-// 7. Modal Edita Agendamento
-// --------------------------
-const modalEditaAgendamento = document.getElementById("modalEditaAgendamento");
-if (modalEditaAgendamento) {
-  modalEditaAgendamento.addEventListener("show.bs.modal", function (event) {
-    const button = event.relatedTarget;
+  if (modalEditaAgendamento) {
+    modalEditaAgendamento.addEventListener("shown.bs.modal", () => {
+      inicializarAutocomplete(modalEditaAgendamento);
+    });
+  }
 
-    modalEditaAgendamento.querySelector("#idagendamento").value = button.getAttribute("data-idagendamento");
-    modalEditaAgendamento.querySelector("#nome").value = button.getAttribute("data-nome");
-    modalEditaAgendamento.querySelector("#email").value = button.getAttribute("data-email");
+  // --------------------------
+  // 7. Modal Edita Agendamento - popular campos e carregar doutores
+  // --------------------------
+  if (modalEditaAgendamento) {
+    modalEditaAgendamento.addEventListener("show.bs.modal", function (event) {
+      const button = event.relatedTarget;
 
-    // Data dd/mm/yyyy → yyyy-mm-dd
-    const dataConsulta = button.getAttribute("data-data");
-    if (dataConsulta) {
-      let partes = dataConsulta.split("/");
-      if (partes.length === 3) {
-        modalEditaAgendamento.querySelector("#dtconsulta").value = `${partes[2]}-${partes[1]}-${partes[0]}`;
+      modalEditaAgendamento.querySelector("#idagendamento").value = button.getAttribute("data-idagendamento") || "";
+      modalEditaAgendamento.querySelector("#nome").value = button.getAttribute("data-nome") || "";
+      modalEditaAgendamento.querySelector("#email").value = button.getAttribute("data-email") || "";
+
+      // Preenche o hidden do codpaciente (muito importante!)
+      modalEditaAgendamento.querySelector("#codPacienteHidden").value = button.getAttribute("data-codpaciente") || "";
+
+      const dataConsulta = button.getAttribute("data-data");
+      if (dataConsulta) {
+        const partes = dataConsulta.split("/");
+        if (partes.length === 3) {
+          modalEditaAgendamento.querySelector("#dtconsulta").value = `${partes[2]}-${partes[1]}-${partes[0]}`;
+        }
       }
-    }
 
-    modalEditaAgendamento.querySelector("#horainicio").value = button.getAttribute("data-horainicio");
-    modalEditaAgendamento.querySelector("#horafim").value = button.getAttribute("data-horafim");
+      modalEditaAgendamento.querySelector("#horainicio").value = button.getAttribute("data-horainicio") || "";
+      modalEditaAgendamento.querySelector("#horafim").value = button.getAttribute("data-horafim") || "";
 
-    // Carregar doutores e selecionar automaticamente
-    const selectDoutorEdita = modalEditaAgendamento.querySelector("#selectDoutorEdita");
-    const coddoutor = button.getAttribute("data-doutor");
+      const selectDoutorEdita = modalEditaAgendamento.querySelector("#selectDoutorEdita");
+      const coddoutor = button.getAttribute("data-doutor") || "";
 
-    carregarDoutores(selectDoutorEdita);
-    setTimeout(() => {
-      if (selectDoutorEdita) selectDoutorEdita.value = coddoutor;
-    }, 150);
-  });
-}
+      carregarDoutores(selectDoutorEdita);
+      setTimeout(() => {
+        if (selectDoutorEdita) selectDoutorEdita.value = coddoutor;
+      }, 150);
+    });
+  }
 
-// Carregar doutores no modal Novo Agendamento
-const selectDoutorNovo = document.getElementById("selectDoutorNovo");
-carregarDoutores(selectDoutorNovo);
+  // --------------------------
+  // 8. Carregar doutores no modal Novo Agendamento
+  // --------------------------
+  const selectDoutorNovo = document.getElementById("selectDoutorNovo");
+  carregarDoutores(selectDoutorNovo);
 
 });
