@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require "../config/conexaodb.php"; // ajuste o caminho se necessário
+    require "../config/conexaodb.php";
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $codpaciente = $_POST["codpaciente"] ?? null;
@@ -23,7 +23,7 @@
                     ":coddoutor" => $coddoutor
                 ]);
                 $_SESSION['success'] = "Agendmaento criado com sucesso!";
-                // redireciona de volta para a agenda
+
                 header("Location: ../pages/agenda.php");
                 exit;
             } catch (PDOException $e) {

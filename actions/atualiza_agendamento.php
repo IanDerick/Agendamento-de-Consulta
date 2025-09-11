@@ -11,7 +11,6 @@ $horaInicio = $_POST["horainicio"] ?? null;
 $horaFim = $_POST["horafim"] ?? null;
 $coddoutor = $_POST["selectDoutorEdita"] ?? null;
 
-// Validar campos essenciais
 if (!$id) {
     $_SESSION['error'] = "ID do agendamento não informado!";
     header("Location: ../pages/agenda.php");

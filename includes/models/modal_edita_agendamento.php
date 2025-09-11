@@ -37,7 +37,7 @@
                             <option value="">Selecione</option>
                         </select>
                     </div>
-                    <!--<div class="mb-3">
+                    <div class="mb-3">
                         <button type="button" class="btn btn-primary form-control" onclick="mostrarInformacoes(event)">
                             Exames
                             <i id="iconeSeta" class="bi bi-arrow-down"></i>
@@ -76,7 +76,7 @@
                             </li>
                         </ul>
                         </div>
-                    </div>-->
+                    </div>
                     <div class="modal-footer">
                         <button type="submit" form="formEditaAgendamento" class="btn btn-green">Salvar</button>
                     </div>
