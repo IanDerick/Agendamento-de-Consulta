@@ -5,7 +5,8 @@
         exit(); 
     }
     require "../actions/listar_agendamento.php";
-    $agendamentos = listarAgendamento();
+    $dataSelecionada = $_GET['data'] ?? date('Y-m-d');
+    $agendamentos = listarAgendamento($dataSelecionada);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -46,6 +47,11 @@
                     <i class="bi bi-plus me-10"></i>
                 </button>
             </div>
+            <form method="get" class="d-flex mb-3">
+                <input type="date" name="data" class="form-control me-2" 
+                    value="<?= htmlspecialchars($_GET['data'] ?? date('Y-m-d')) ?>">
+                <button type="submit" class="btn btn-primary">Filtrar</button>
+            </form>
             <table class="table">
                 <thead>
                     <tr>

@@ -2,9 +2,13 @@
     session_start();
     require "../config/conexaodb.php";
 
-    function listarAgendamento() {
+    function listarAgendamento($data = null) {
         global $pdo;
         try {
+            if (!$data) {
+                $data = date('Y-m-d'); // padrão: hoje
+            }
+    
             $sql = "SELECT 
                         AGENDAMENTO.IDAGENDAMENTO,
                         PACIENTE.CODPACIENTE,
@@ -17,21 +21,20 @@
                         DOUTOR.NOME AS DOUTOR
                     FROM 
                         AGENDAMENTO
-                    INNER JOIN DOUTOR ON
-                    (
-                        DOUTOR.CODDOUTOR = AGENDAMENTO.CODDOUTOR
-                    )
-                    INNER JOIN PACIENTE ON
-                    (
-                        PACIENTE.CODPACIENTE = AGENDAMENTO.CODPACIENTE
-                    )
-                    ORDER BY DTCONSULTA, HORAINICIO ASC
-                    ";
-            $stmt = $pdo->query($sql);
+                    INNER JOIN DOUTOR 
+                        ON DOUTOR.CODDOUTOR = AGENDAMENTO.CODDOUTOR
+                    INNER JOIN PACIENTE 
+                        ON PACIENTE.CODPACIENTE = AGENDAMENTO.CODPACIENTE
+                    WHERE DATE(dtconsulta) = :data
+                    ORDER BY DTCONSULTA, HORAINICIO ASC";
+    
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([':data' => $data]);
+    
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            error_log("Erro ao buscar usuários: " . $e->getMessage());
+            error_log("Erro ao buscar agendamentos: " . $e->getMessage());
             return [];
         }
-    }
+    }    
 ?>
