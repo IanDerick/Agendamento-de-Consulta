@@ -21,6 +21,11 @@
                         echo "<p style='color:red'>". $_SESSION["error"] ."</p>";
                         unset($_SESSION["error"]);
                     }
+                    if (isset($_SESSION["success"])) {
+                        echo "<p style='color:green'>" . $_SESSION["success"] . "</p>";
+                        unset($_SESSION["success"]);
+                    }
+                    
                 ?>
                 <label for="email" class="form-label">E-mail</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="nome@exemplo.com" required>
