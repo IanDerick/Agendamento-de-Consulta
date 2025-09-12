@@ -32,7 +32,14 @@
                                 <label for="telefone" class="form-label">Telefone:</label>
                                 <input type="tel" class="form-control" id="telefone" name="telefone">
                             </div>
-                            <div class="mb-3">
+                            <form enctype="../actions/adiciona_exame.php" method="post">
+                                <input type="file" name="imagem" accept="image/*">
+                                <button type="submit">Enviar</button>
+                            </form>
+                            <?php if ($mensagem): ?>
+                                <p><?php echo htmlspecialchars($mensagem); ?> </p>
+                            <?php endif; ?>
+                            <!--<div class="mb-3">
                                 <button type="button" class="btn btn-primary form-control" onclick="mostrarInformacoes(event)">
                                     Exames
                                 <i id="iconeSeta" class="bi bi-arrow-down"></i>
@@ -44,34 +51,8 @@
                                         </button>
                                         <input type="file" id="inputArquivo" name="arquivo" style="display: none;"/>
                                     </li>
-                                    <ul class="exames">
-                                        <li class="itemExames">
-                                            <a href="caminho/para/seu-arquivo.pdf" download>
-                                                <button class="btn btn-ligh">
-                                                    Anamnese 
-                                                    <i class="bi bi-download"></i>
-                                                </button>
-                                            </a>
-                                        </li>
-                                        <li class="itemExames">
-                                            <a href="caminho/para/seu-arquivo.pdf" download>
-                                                <button class="btn btn-ligh">
-                                                    Panoramica 
-                                                    <i class="bi bi-download"></i>
-                                                </button>
-                                            </a>
-                                        </li>
-                                        <li class="itemExames">
-                                            <a href="caminho/para/seu-arquivo.pdf" download>
-                                                <button class="btn btn-ligh">
-                                                    Telerradiografia
-                                                    <i class="bi bi-download"></i>
-                                                </button>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                     <div class="modal-footer">
