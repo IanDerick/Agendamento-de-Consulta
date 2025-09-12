@@ -50,7 +50,7 @@
             <form method="get" class="d-flex justify-content-end mb-3">
                 <input type="date" name="data" class="form-control me-2" style="max-width: 180px;"  
                     value="<?= htmlspecialchars($_GET['data'] ?? date('Y-m-d')) ?>">
-                <button type="submit" class="btn btn-primary">Filtrar</button>
+                <button type="submit" class="btn btn-filtrar">Filtrar</button>
             </form>
             <table class="table">
                 <thead>
