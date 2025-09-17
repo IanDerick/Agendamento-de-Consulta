@@ -7,6 +7,12 @@
             </div>
             <div class="modal-body">
                 <form id="formNovoDoutor" action="../actions/adiciona_doutor.php" method="post">
+                    <div class="d-flex justify-content-center">
+                        <div class="mb-3 text-center">
+                            <i class="bi bi-person-circle display-1 text-secondary"></i>
+                            <small class="d-block mt-2 ">Nome</small>
+                        </div>
+                    </div>
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome:</label>
                         <input type="text" class="form-control" id="nomeDoutor" name="nome" required>

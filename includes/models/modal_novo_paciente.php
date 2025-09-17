@@ -12,7 +12,7 @@
                             <div class="d-flex justify-content-center">
                                 <div class="mb-3 text-center">
                                     <i class="bi bi-person-circle display-1 text-secondary"></i>
-                                    <small class="d-block mt-2 ">Nome:</small>
+                                    <small class="d-block mt-2 ">Nome</small>
                                 </div>
                             </div>
                             <div class="mb-3">
