@@ -86,8 +86,8 @@
                                     </button>
 
                                     <a href="../actions/exclui_agendamento.php?idagendamento=<?= (int)$a['IDAGENDAMENTO'] ?>"
-                                    class="btn btn-outline-danger btn-sm ms-2"
-                                    onclick="return confirm('Deseja excluir este agendamento?');">
+                                        class="btn btn-outline-danger btn-sm ms-2"
+                                        onclick="return confirm('Deseja excluir este agendamento?');">
                                         <i class="bi bi-trash"></i>
                                     </a>
                                 </td>

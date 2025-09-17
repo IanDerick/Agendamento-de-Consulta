@@ -1,3 +1,10 @@
+<?php
+    var_dump($_FILES);
+    if (isset($_FILES['imagem'])) {
+        var_dump($_FILES['imagem']);;
+    }
+?>
+
 <div class="modal fade" id="modalEditaPaciente" tabindex="-1" aria-labelledby="modalEditaPacienteLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -32,9 +39,9 @@
                                 <label for="telefone" class="form-label">Telefone:</label>
                                 <input type="tel" class="form-control" id="telefone" name="telefone">
                             </div>
-                            <form enctype="../actions/adiciona_exame.php" method="post">
-                                <input type="file" name="imagem" accept="image/*">
-                                <button type="submit">Enviar</button>
+                            <form enctype="multipart/form-data" method="post" action="">
+                                <input type="file" name="imagem">
+                                <button name="upload" type="submit">Enviar</button>
                             </form>
                             <?php if ($mensagem): ?>
                                 <p><?php echo htmlspecialchars($mensagem); ?> </p>
@@ -55,9 +62,9 @@
                             </div>-->
                         </div>
                     </div>
-                    <div class="modal-footer">
+                    <!--<div class="modal-footer">
                         <button type="submit" form="formEditaPaciente" class="btn btn-green">Salvar</button>
-                    </div>
+                    </div>-->
                 </form>
             </div>
         </div>
