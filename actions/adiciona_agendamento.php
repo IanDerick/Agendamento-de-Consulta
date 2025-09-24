@@ -22,7 +22,7 @@
                     ":horafim" => $horafim,
                     ":coddoutor" => $coddoutor
                 ]);
-                $_SESSION['success'] = "Agendmaento criado com sucesso!";
+                $_SESSION['success'] = "Agendamento criado com sucesso!";
 
                 header("Location: ../pages/agenda.php");
                 exit;
