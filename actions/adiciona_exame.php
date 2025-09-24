@@ -54,7 +54,7 @@
         }
     
         // Redireciona para evitar reenvio no F5
-        header("Location: " . $_SERVER['PHP_SELF']);
+        header("Location: ../pages/novo_paciente.php");
         exit;
     }
     
