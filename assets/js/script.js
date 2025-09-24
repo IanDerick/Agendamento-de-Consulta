@@ -37,16 +37,20 @@ document.addEventListener("DOMContentLoaded", function () {
   if (modalEditaPaciente) {
     modalEditaPaciente.addEventListener("show.bs.modal", function (event) {
       const button = event.relatedTarget;
-
-      modalEditaPaciente.querySelector("#codpaciente").value = button.getAttribute("data-id");
+  
+      const codpaciente = button.getAttribute("data-id");
+  
+      modalEditaPaciente.querySelector("#codpaciente").value = codpaciente;
       modalEditaPaciente.querySelector("#nome").value = button.getAttribute("data-nome");
       modalEditaPaciente.querySelector("#cpf").value = button.getAttribute("data-cpf");
       modalEditaPaciente.querySelector("#email").value = button.getAttribute("data-email");
       modalEditaPaciente.querySelector("#telefone").value = button.getAttribute("data-telefone");
-
+  
       modalEditaPaciente.querySelector("#previewNome").textContent = button.getAttribute("data-nome");
+  
+      modalEditaPaciente.querySelector("#codpaciente_exame").value = codpaciente;
     });
-  }
+  }  
 
   // --------------------------
   // 4. Modal Edita Doutor

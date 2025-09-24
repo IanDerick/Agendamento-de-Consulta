@@ -54,6 +54,7 @@
         </form>
           <!-- Upload de exame -->
         <form id="salvaExame" method="post" enctype="multipart/form-data">
+          <input type="hidden" id="codpaciente_exame" name="codpaciente">
             <div class="mb-3">
                 <label for="imagem" class="form-label">Enviar exame (JPG ou PNG):</label>
                 <input type="file" class="form-control" name="imagem" id="imagem" accept=".jpg,.png">

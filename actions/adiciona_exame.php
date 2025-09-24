@@ -6,9 +6,9 @@
     require "../config/conexaodb.php";
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['imagem'])) {
-
+        $codpaciente = filter_input(INPUT_POST, 'codpaciente', FILTER_VALIDATE_INT);
         $arquivo = $_FILES['imagem'];
-    
+        var_dump($codpaciente);
         if ($arquivo['error'] !== UPLOAD_ERR_OK) {
             $_SESSION['msg'] = "Falha ao enviar arquivo.";
             header("Location: " . $_SERVER['PHP_SELF']);
@@ -16,7 +16,8 @@
         }
     
         // Caminho físico para salvar os arquivos
-        $pasta = __DIR__ . "/../../includes/models/arquivos/";
+        $pasta = __DIR__ . "../../includes/models/arquivos/";
+        var_dump($pasta);
         if (!is_dir($pasta)) {
             mkdir($pasta, 0755, true);
         }
@@ -40,7 +41,7 @@
                         VALUES (:codpaciente, :arquivo, NOW())";
     
                 $stmt = $pdo->prepare($sql);
-                $stmt->bindValue(':codpaciente', 1, PDO::PARAM_INT);
+                $stmt->bindValue(':codpaciente', $codpaciente, PDO::PARAM_INT);
                 $stmt->bindValue(':arquivo', $caminhoBanco, PDO::PARAM_STR);
                 $stmt->execute();
     
