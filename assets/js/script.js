@@ -201,13 +201,26 @@ document.addEventListener("DOMContentLoaded", function () {
   if (modalEditaAgendamento) {
     modalEditaAgendamento.addEventListener("show.bs.modal", function (event) {
       const button = event.relatedTarget;
-
+      const codpaciente = button.getAttribute("data-codpaciente");
       modalEditaAgendamento.querySelector("#idagendamento").value = button.getAttribute("data-idagendamento") || "";
       modalEditaAgendamento.querySelector("#nome").value = button.getAttribute("data-nome") || "";
       modalEditaAgendamento.querySelector("#email").value = button.getAttribute("data-email") || "";
 
       // Preenche o hidden do codpaciente (muito importante!)
       modalEditaAgendamento.querySelector("#codPacienteHidden").value = button.getAttribute("data-codpaciente") || "";
+      modalEditaAgendamento.querySelector("#codpaciente_exame").value = codpaciente;
+
+  
+      //Carregar exames via AJAX
+      fetch(`../actions/listar_exames.php?codpaciente=${codpaciente}`)
+        .then(response => response.text())
+        .then(html => {
+          modalEditaAgendamento.querySelector("#listaExames").innerHTML = html;
+        })
+        .catch(error => {
+          modalEditaAgendamento.querySelector("#listaExames").innerHTML = "<div class='text-danger'>Erro ao carregar exames.</div>";
+          console.error("Erro ao carregar exames:", error);
+        });
 
       const dataConsulta = button.getAttribute("data-data");
       if (dataConsulta) {

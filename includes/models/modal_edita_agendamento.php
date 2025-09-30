@@ -36,51 +36,25 @@
                         <select name="selectDoutorEdita" id="selectDoutorEdita" class="form-control" required>
                             <option value="">Selecione</option>
                         </select>
-                    </div>
+                </form>
+                                <!-- Upload de exame -->
+                <form id="salvaExame" action="../actions/adiciona_exame.php" method="post" enctype="multipart/form-data">
+                <input id="codpaciente_exame" name="codpaciente_exame">
                     <div class="mb-3">
-                        <button type="button" class="btn btn-primary form-control" onclick="mostrarInformacoes(event)">
-                            Exames
-                            <i id="iconeSeta" class="bi bi-arrow-down"></i>
-                        </button>
-                        <div id="infoEditaAgendamento">
-                            <li class="itemExames">
-                                    <button type="button" class="btn btn-outline-primary form-control" onclick="document.getElementById('inputArquivo').click()">
-                                        Adicionar exame<i class="bi bi-plus"></i>
-                                    </button>
-                                <input type="file" id="inputArquivo" name="arquivo" style="display: none;"/>
-                            </li>
-                            <ul class="exames">
-                            <li class="itemExames">
-                                <a href="caminho/para/seu-arquivo.pdf" download>
-                                    <button class="btn btn-ligh">
-                                        Anamnese 
-                                        <i class="bi bi-download"></i>
-                                    </button>
-                                </a>
-                            </li>
-                            <li class="itemExames">
-                                <a href="caminho/para/seu-arquivo.pdf" download>
-                                    <button class="btn btn-ligh">
-                                        Panoramica 
-                                        <i class="bi bi-download"></i>
-                                    </button>
-                                </a>
-                            </li>
-                            <li class="itemExames">
-                                <a href="caminho/para/seu-arquivo.pdf" download>
-                                    <button class="btn btn-ligh">
-                                        Telerradiografia
-                                        <i class="bi bi-download"></i>
-                                    </button>
-                                </a>
-                            </li>
-                        </ul>
-                        </div>
+                        <label for="imagem" class="form-label">Enviar exame (JPG ou PNG):</label>
+                        <input type="file" class="form-control" name="imagem" id="imagem" accept=".jpg,.png">
                     </div>
+
                     <div class="modal-footer">
-                        <button type="submit" form="formEditaAgendamento" class="btn btn-green">Salvar</button>
+                        <button type="submit" id="btnSalvaExame" class="btn btn-warning" disabled>Enviar Exame</button>
                     </div>
                 </form>
+                <hr>
+                <!-- LISTAGEM DOS EXAMES -->
+                <h6>Exames enviados</h6>
+                <div id="listaExames" class="mb-3">
+                <div class="text-muted">Carregando exames...</div>
+                </div>
             </div>
         </div>
     </div>

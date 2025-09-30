@@ -30,5 +30,6 @@
         $_SESSION['msg'] = "Exame não encontrado.";
     }
 
-    header("Location: ../pages/novo_paciente.php");
-exit;
+    header("Location: " . $_SERVER['HTTP_REFERER']);
+    exit;
+?>
