@@ -16,16 +16,15 @@ if (empty($exames)) {
 }
 
 foreach ($exames as $linha) {
-    echo '<div class="mb-1">';
+    echo '<div class="mb-3 d-flex align-items-center">';
     echo '<a href="' . htmlspecialchars($linha['arquivo']) . '" target="_blank">'
-         . basename($linha['arquivo']) . '</a>';
-    echo '<small class="text-muted"> - '
-         . date("d/m/Y H:i", strtotime($linha['reccreatedon'])) . '</small>';
-    echo '</div>';
-    echo '<div>';
+        . basename($linha['arquivo']) . '</a>';
+    echo '<small class="text-muted ms-2"> - '  // Pequena margem para separar data do arquivo
+        . date("d/m/Y H:i", strtotime($linha['reccreatedon'])) . '</small>';
     echo '<a href="../actions/exclui_exames.php?idexames='
-         . $linha['idexames'] . '&codpaciente=' . $codpaciente
-         . '" onclick="return confirm(\'Excluir?\')">Excluir</a>';
+        . $linha['idexames'] . '&codpaciente=' . $codpaciente
+        . '" onclick="return confirm(\'Excluir?\')" class="ms-auto">';
+    echo '<i class="bi bi-trash"></i></a>'; 
     echo '</div>';
 }
 ?>
