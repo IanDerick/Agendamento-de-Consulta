@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
       modalEditaPaciente.querySelector("#previewNome").textContent = button.getAttribute("data-nome");
       modalEditaPaciente.querySelector("#codpaciente_exame").value = codpaciente;
   
-      // 🔽 Carregar exames via AJAX
+      //Carregar exames via AJAX
       fetch(`../actions/listar_exames.php?codpaciente=${codpaciente}`)
         .then(response => response.text())
         .then(html => {

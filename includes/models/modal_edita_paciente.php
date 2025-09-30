@@ -16,7 +16,7 @@
 
         <form id="formEditaPaciente" action="../actions/atualiza_paciente.php" method="post" enctype="multipart/form-data">
 
-          <input id="codpaciente" name="codpaciente">
+          <input type="hidden" id="codpaciente" name="codpaciente">
 
           <div class="mb-3 text-center">
             <i class="bi bi-person-circle display-1 text-secondary"></i>
@@ -48,7 +48,7 @@
         </form>
           <!-- Upload de exame -->
         <form id="salvaExame" action="../actions/adiciona_exame.php" method="post" enctype="multipart/form-data">
-          <input id="codpaciente_exame" name="codpaciente_exame">
+          <input type="hidden" id="codpaciente_exame" name="codpaciente_exame">
             <div class="mb-3">
                 <label for="imagem" class="form-label">Enviar exame (JPG ou PNG):</label>
                 <input type="file" class="form-control" name="imagem" id="imagem" accept=".jpg,.png">
