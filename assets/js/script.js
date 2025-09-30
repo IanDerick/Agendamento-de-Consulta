@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // 3. Modal Edita Paciente
   // --------------------------
   const modalEditaPaciente = document.getElementById("modalEditaPaciente");
+
   if (modalEditaPaciente) {
     modalEditaPaciente.addEventListener("show.bs.modal", function (event) {
       const button = event.relatedTarget;
@@ -45,13 +46,22 @@ document.addEventListener("DOMContentLoaded", function () {
       modalEditaPaciente.querySelector("#cpf").value = button.getAttribute("data-cpf");
       modalEditaPaciente.querySelector("#email").value = button.getAttribute("data-email");
       modalEditaPaciente.querySelector("#telefone").value = button.getAttribute("data-telefone");
-  
       modalEditaPaciente.querySelector("#previewNome").textContent = button.getAttribute("data-nome");
-  
       modalEditaPaciente.querySelector("#codpaciente_exame").value = codpaciente;
+  
+      // 🔽 Carregar exames via AJAX
+      fetch(`../actions/listar_exames.php?codpaciente=${codpaciente}`)
+        .then(response => response.text())
+        .then(html => {
+          modalEditaPaciente.querySelector("#listaExames").innerHTML = html;
+        })
+        .catch(error => {
+          modalEditaPaciente.querySelector("#listaExames").innerHTML = "<div class='text-danger'>Erro ao carregar exames.</div>";
+          console.error("Erro ao carregar exames:", error);
+        });
     });
-  }  
-
+  }
+   
   // --------------------------
   // 4. Modal Edita Doutor
   // --------------------------

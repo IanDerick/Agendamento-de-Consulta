@@ -1,17 +1,3 @@
-<?php
-  session_start();
-  require "../actions/adiciona_exame.php";
-
-  $codpaciente = isset($_GET['codpaciente']) ? (int) $_GET['codpaciente'] : 0;
-  if ($codpaciente < 0) {
-      echo "Paciente inválido.";
-      exit;
-  }
-
-
-  $sql_query = listarExame($codpaciente);
-?>
-
 <div class="modal fade" id="modalEditaPaciente" tabindex="-1" aria-labelledby="modalEditaPacienteLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -62,7 +48,7 @@
         </form>
           <!-- Upload de exame -->
         <form id="salvaExame" action="../actions/adiciona_exame.php" method="post" enctype="multipart/form-data">
-          <input id="codpaciente_exame" name="codpaciente">
+          <input id="codpaciente_exame" name="codpaciente_exame">
             <div class="mb-3">
                 <label for="imagem" class="form-label">Enviar exame (JPG ou PNG):</label>
                 <input type="file" class="form-control" name="imagem" id="imagem" accept=".jpg,.png">
@@ -75,19 +61,10 @@
         <hr>
         <!-- LISTAGEM DOS EXAMES -->
         <h6>Exames enviados</h6>
-        <?php foreach ($sql_query as $linha) : ?>
-            <div class="mb-1">
-                <a href="<?php echo htmlspecialchars($linha['arquivo']); ?>" target="_blank">
-                    <?php echo basename($linha['arquivo']); ?>
-                </a>
-                <small class="text-muted">
-                    - <?php echo date("d/m/Y H:i", strtotime($linha['reccreatedon'])); ?>
-                </small>
-            </div>
-            <div>
-                <a href="../actions/exclui_exames.php?idexames=<?= $linha['idexames'] ?>&codpaciente=<?= $codpaciente ?>" onclick="return confirm('Excluir?')">Excluir</a>
-            </div>
-        <?php endforeach; ?>
+        <div id="listaExames" class="mb-3">
+          <div class="text-muted">Carregando exames...</div>
+        </div>
+
       </div>
     </div>
   </div>
