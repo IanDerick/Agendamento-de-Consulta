@@ -55,7 +55,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="submit" id="salvaExame" class="btn btn-primary">Enviar Exame</button>
+                <button type="submit" id="btnSalvaExame" class="btn btn-warning" disabled>Enviar Exame</button>
             </div>
         </form>
         <hr>
@@ -64,7 +64,6 @@
         <div id="listaExames" class="mb-3">
           <div class="text-muted">Carregando exames...</div>
         </div>
-
       </div>
     </div>
   </div>

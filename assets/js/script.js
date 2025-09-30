@@ -236,4 +236,19 @@ document.addEventListener("DOMContentLoaded", function () {
   const selectDoutorNovo = document.getElementById("selectDoutorNovo");
   carregarDoutores(selectDoutorNovo);
 
+  // --------------------------
+  // 9. Habilitar botão Enviar Exame apenas se arquivo selecionado
+  // --------------------------
+  const inputImagem = document.getElementById("imagem");
+  const btnEnviarExame = document.getElementById("btnSalvaExame");
+
+  if (inputImagem && btnEnviarExame) {
+    // Deixa o botão desabilitado ao carregar a página/modal
+    btnEnviarExame.disabled = true;
+
+    inputImagem.addEventListener("change", () => {
+      btnEnviarExame.disabled = inputImagem.files.length === 0;
+    });
+  }
+
 });
