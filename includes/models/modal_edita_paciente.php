@@ -1,5 +1,15 @@
 <?php
+  session_start();
   require "../actions/adiciona_exame.php";
+
+  $codpaciente = isset($_GET['codpaciente']) ? (int) $_GET['codpaciente'] : 0;
+  if ($codpaciente < 0) {
+      echo "Paciente inválido.";
+      exit;
+  }
+
+
+  $sql_query = listarExame($codpaciente);
 ?>
 
 <div class="modal fade" id="modalEditaPaciente" tabindex="-1" aria-labelledby="modalEditaPacienteLabel" aria-hidden="true">
@@ -11,7 +21,6 @@
       </div>
 
       <div class="modal-body">
-        <!-- Exibe mensagens de sucesso/erro -->
         <?php
         if (!empty($_SESSION['msg'])) {
             echo '<div class="alert alert-info">' . htmlspecialchars($_SESSION['msg']) . '</div>';
@@ -19,10 +28,9 @@
         }
         ?>
 
-        <!-- ÚNICO FORMULÁRIO: dados do paciente + upload -->
         <form id="formEditaPaciente" action="../actions/atualiza_paciente.php" method="post" enctype="multipart/form-data">
 
-          <input type="hidden" id="codpaciente" name="codpaciente">
+          <input id="codpaciente" name="codpaciente">
 
           <div class="mb-3 text-center">
             <i class="bi bi-person-circle display-1 text-secondary"></i>
@@ -54,7 +62,7 @@
         </form>
           <!-- Upload de exame -->
         <form id="salvaExame" action="../actions/adiciona_exame.php" method="post" enctype="multipart/form-data">
-          <input type="hidden" id="codpaciente_exame" name="codpaciente">
+          <input id="codpaciente_exame" name="codpaciente">
             <div class="mb-3">
                 <label for="imagem" class="form-label">Enviar exame (JPG ou PNG):</label>
                 <input type="file" class="form-control" name="imagem" id="imagem" accept=".jpg,.png">
@@ -67,19 +75,19 @@
         <hr>
         <!-- LISTAGEM DOS EXAMES -->
         <h6>Exames enviados</h6>
-        <?php while ($linha = $sql_query->fetch(PDO::FETCH_ASSOC)) { ?>
-          <div class="mb-1">
-            <a href="<?php echo htmlspecialchars($linha['arquivo']); ?>" target="_blank">
-              <?php echo basename($linha['arquivo']); ?>
-            </a>
-            <small class="text-muted">
-              - <?php echo date("d/m/Y H:i", strtotime($linha['reccreatedon'])); ?>
-            </small>
-          </div>
-          <div>
-            <a href="../actions/exclui_exames.php?idexames=<?= $linha['idexames'] ?>" onclick="return confirm('Excluir?')">Excluir</a>
-          </div>
-        <?php } ?>
+        <?php foreach ($sql_query as $linha) : ?>
+            <div class="mb-1">
+                <a href="<?php echo htmlspecialchars($linha['arquivo']); ?>" target="_blank">
+                    <?php echo basename($linha['arquivo']); ?>
+                </a>
+                <small class="text-muted">
+                    - <?php echo date("d/m/Y H:i", strtotime($linha['reccreatedon'])); ?>
+                </small>
+            </div>
+            <div>
+                <a href="../actions/exclui_exames.php?idexames=<?= $linha['idexames'] ?>&codpaciente=<?= $codpaciente ?>" onclick="return confirm('Excluir?')">Excluir</a>
+            </div>
+        <?php endforeach; ?>
       </div>
     </div>
   </div>
