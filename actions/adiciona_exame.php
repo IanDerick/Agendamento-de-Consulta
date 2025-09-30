@@ -17,9 +17,7 @@ function listarExame($codpaciente) {
                     reccreatedon
                 FROM exames
                 WHERE codpaciente = :codpaciente
-                ORDER BY reccreatedon DESC";
-
-
+                ORDER BY reccreatedon ASC";
 
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':codpaciente', $codpaciente, PDO::PARAM_INT);
@@ -35,7 +33,7 @@ function listarExame($codpaciente) {
 
 // Upload de arquivo
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['imagem'])) {
-    $codpaciente = filter_input(INPUT_POST, 'codpaciente', FILTER_VALIDATE_INT);
+    $codpaciente = filter_input(INPUT_POST, 'codpaciente_exame', FILTER_VALIDATE_INT);
     $arquivo = $_FILES['imagem'];
 
     if (!$codpaciente) {

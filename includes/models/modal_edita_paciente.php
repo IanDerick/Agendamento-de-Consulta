@@ -43,7 +43,7 @@
             <input type="tel" class="form-control" id="telefone" name="telefone">
           </div>
           <div class="modal-footer">
-                <button type="submit" id="formEditaPaciente" class="btn btn-primary">Salvar e Enviar</button>
+                <button type="submit" id="formEditaPaciente" class="btn btn-primary">Salvar</button>
             </div>
         </form>
           <!-- Upload de exame -->
@@ -55,7 +55,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="submit" id="salvaExame" class="btn btn-primary">Salvar e Enviar</button>
+                <button type="submit" id="salvaExame" class="btn btn-primary">Enviar Exame</button>
             </div>
         </form>
         <hr>
