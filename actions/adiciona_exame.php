@@ -82,8 +82,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['imagem'])) {
     } else {
         $_SESSION['msg'] = "Falha ao mover arquivo.";
     }
-
-    header("Location: ../pages/novo_paciente.php?codpaciente=" . $codpaciente);
+    
+    header("Location: " . $_SERVER['HTTP_REFERER']);
     exit;
 }
 ?>
