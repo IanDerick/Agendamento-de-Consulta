@@ -36,11 +36,15 @@
                         <select name="selectDoutorEdita" id="selectDoutorEdita" class="form-control" required>
                             <option value="">Selecione</option>
                         </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="formEditaAgendamento"  class="btn btn-primary">Salvar</button>
+                    </div>
                 </form>
                                 <!-- Upload de exame -->
                 <form id="salvaExame" action="../actions/adiciona_exame.php" method="post" enctype="multipart/form-data">
-                <input id="codpaciente_exame" name="codpaciente_exame">
-                    <div class="mb-3">
+                <input type="hidden" id="codpaciente_exame" name="codpaciente_exame">
+                    <div class="mb-3 mt-3">
                         <label for="imagem" class="form-label">Enviar exame (JPG ou PNG):</label>
                         <input type="file" class="form-control" name="imagem" id="imagem" accept=".jpg,.png">
                     </div>
