@@ -52,6 +52,9 @@
                     value="<?= htmlspecialchars($_GET['data'] ?? date('Y-m-d')) ?>">
                 <button type="submit" class="btn btn-filtrar">Filtrar</button>
             </form>
+            <div class="d-flex justify-content-end mb-3">
+                <button class="btn btn-filtrar" type="submit">Relatório</button>
+            </div>
             <table class="table">
                 <thead>
                     <tr>
