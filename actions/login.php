@@ -23,9 +23,9 @@ if ($usuario && password_verify($password, $usuario['senha']) || $doutor && pass
         'tipo' => 'usuario'
     ];
     $_SESSION['doutor'] = [
-        'id' => $doutor['id'],
+        'id' => $doutor['coddoutor'],
         'nome' => $doutor['nome'],
-        'status' => 'usuario'
+        'status' => $doutor['status']
     ];
     header("Location: ../pages/agenda.php");
     exit();
