@@ -3,6 +3,31 @@ require "../actions/adiciona_exame.php";
 
 $codpaciente = $_GET['codpaciente'] ?? null;
 
+// Função para listar exames
+function listarExame($codpaciente) {
+    global $pdo;
+
+    try {
+        $sql = "SELECT 
+                    idexames,
+                    codpaciente,
+                    arquivo,
+                    reccreatedon
+                FROM exames
+                WHERE codpaciente = :codpaciente
+                ORDER BY reccreatedon ASC";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(':codpaciente', $codpaciente, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Erro ao buscar exames: " . $e->getMessage());
+        return [];
+    }
+}
+
 if (!$codpaciente) {
     echo "<div class='text-muted'>Nenhum paciente selecionado.</div>";
     exit;

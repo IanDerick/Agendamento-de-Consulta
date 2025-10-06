@@ -5,32 +5,6 @@ ini_set('display_errors', 1);
 
 require "../config/conexaodb.php";
 
-// Função para listar exames
-function listarExame($codpaciente) {
-    global $pdo;
-
-    try {
-        $sql = "SELECT 
-                    idexames,
-                    codpaciente,
-                    arquivo,
-                    reccreatedon
-                FROM exames
-                WHERE codpaciente = :codpaciente
-                ORDER BY reccreatedon ASC";
-
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindValue(':codpaciente', $codpaciente, PDO::PARAM_INT);
-        $stmt->execute();
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        error_log("Erro ao buscar exames: " . $e->getMessage());
-        return [];
-    }
-}
-
-
 // Upload de arquivo
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['imagem'])) {
     $codpaciente = filter_input(INPUT_POST, 'codpaciente_exame', FILTER_VALIDATE_INT);
