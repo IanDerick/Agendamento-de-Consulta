@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['imagem'])) {
         exit;
     }
 
-    $pasta = __DIR__ . "../../includes/models/arquivos/";
+    $pasta = __DIR__ . "../../assets/arquivos/";
 
     if (!is_dir($pasta)) {
         mkdir($pasta, 0755, true);
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['imagem'])) {
     }
 
     $caminhoFisico = $pasta . $novoNome;
-    $caminhoBanco = "/Agendamento-de-Consulta/includes/models/arquivos/" . $novoNome;
+    $caminhoBanco = "/Agendamento-de-Consulta/assets/arquivos/" . $novoNome;
 
     if (move_uploaded_file($arquivo['tmp_name'], $caminhoFisico)) {
         try {
