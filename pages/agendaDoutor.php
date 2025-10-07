@@ -1,13 +1,13 @@
 <?php 
     session_start();
-    if (!isset($_SESSION['usuario'])) {
+    if (!isset($_SESSION['doutor'])) {
         header("Location: ../index.php");
         exit(); 
     }
     require "../actions/listar_agendamento.php";
     $dataSelecionada = $_GET['data'] ?? date('Y-m-d');
-
-    $agendamentos = listarAgendamento($dataSelecionada);
+    
+    $agendamentos = listarAgendamentoDoutor($dataSelecionada, $_SESSION['doutor']['id']);
 
 ?>
 <!DOCTYPE html>
@@ -25,7 +25,19 @@
 <div class="container-fluid">
     <div class="row">
         <nav class="col-md-1 col-lg-1 d-flex flex-column justify-content-between sidebar">
-            <?php include '../includes/navbar.php'; ?>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="agendaDoutor.php">
+                        <i class="bi bi-calendar fs-3"></i>
+                        Agenda
+                    </a>
+                </li>
+            </ul>
+            <div class="menu-inferior">
+                <a href="../actions/logout.php" class="nav-link">
+                    <i class="bi bi-box-arrow-right fs-3"></i>
+                </a>
+            </div>
         </nav>
         <main class="col-md-9 col-lg-11 px-md-4 main-content">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">

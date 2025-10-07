@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -28,7 +27,7 @@
                     
                 ?>
                 <label for="email" class="form-label">E-mail</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="nome@exemplo.com" required>
+                <input type="email" class="form-control" name="email" placeholder="nome@exemplo.com" required>
             </div>
             <div class="mb-3">
                 <label for="senha" class="form-label">Senha</label>
