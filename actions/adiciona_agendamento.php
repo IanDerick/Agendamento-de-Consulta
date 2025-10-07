@@ -24,7 +24,7 @@
                 ]);
                 $_SESSION['success'] = "Agendamento criado com sucesso!";
 
-                header("Location: ../pages/agenda.php");
+                header("Location: " . $_SERVER['HTTP_REFERER']);
                 exit;
             } catch (PDOException $e) {
                 $_SESSION['error'] = "Erro ao salvar no banco: " . $e->getMessage();

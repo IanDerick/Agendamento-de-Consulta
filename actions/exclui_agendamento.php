@@ -7,7 +7,7 @@
     $id = $_GET["idagendamento"] ?? null;
     if (!$id) {
         $_SESSION['error'] = "ID do agendamento não informado!";
-        header("Location: ../pages/agenda.php");
+        header("Location: " . $_SERVER['HTTP_REFERER']);
         exit();
     }
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -18,6 +18,6 @@
     } catch (PDOException $e) {
         $_SESSION['error'] = "Erro ao excluir no banco: " . $e->getMessage();
     }
-    header("Location: ../pages/agenda.php");
+    header("Location: " . $_SERVER['HTTP_REFERER']);
     exit();
 ?>
