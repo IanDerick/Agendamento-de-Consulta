@@ -6,22 +6,12 @@
     }
     require "../actions/listar_agendamento.php";
     $dataSelecionada = $_GET['data'] ?? date('Y-m-d');
-    $agendamentos = listarAgendamento($dataSelecionada);
-
-// Atribui um valor à sessão para fins de exemplo
-$_SESSION['usuario'];
-
-// Obtém e exibe o ID da sessão
-$id_sessao = session_id();
-echo "ID da Sessão: " . $id_sessao . "<br>";
-
-// Exibe o status da sessão
-$status_sessao = session_status();
-echo "Status da Sessão: " . $status_sessao . "<br>";
-
-// Exibe todos os dados na variável $_SESSION
+    //$agendamentos = listarAgendamento($dataSelecionada);
+    PRINT_R( $agendamentos);
+    $agendamentos = listarAgendamentoDoutor($dataSelecionada, $_SESSION['doutor']['id']);
+    PRINT_R( $agendamentos);
 echo "Dados da Sessão: <br>";
-print_r($_SESSION);
+print_r($_SESSION['doutor']['id']);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">

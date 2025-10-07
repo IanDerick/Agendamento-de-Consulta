@@ -57,7 +57,7 @@
                 <!-- LISTAGEM DOS EXAMES -->
                 <h6>Exames enviados</h6>
                 <div id="listaExames" class="mb-3">
-                <div class="text-muted">Carregando exames...</div>
+                    <div class="text-muted">Carregando exames...</div>
                 </div>
             </div>
         </div>
