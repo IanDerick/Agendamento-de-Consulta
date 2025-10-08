@@ -20,6 +20,10 @@
         $horafim = $_POST["horafim"] ?? null;
         $coddoutor = $_POST["SelectDoutor"] ?? null;
 
+        /*$stmt = $pdo->prepare("SELECT CODDOUTOR, NOME FROM DOUTOR WHERE STATUS = 1 ORDER BY NOME");
+        $stmt->execute();
+        $doutores = $stmt->fetchAll(PDO::FETCH_ASSOC)*/
+
         if ($codpaciente && $dtconsulta && $horainicio && $horafim && $coddoutor) {
             try {
                 $stmt = $pdo->prepare("
@@ -49,8 +53,8 @@
                     $mail->addAddress($emailPaciente);
             
                     $mail->isHTML(true);
-                    $mail->Subject = 'Consulta marcada!';
-                    $mail->Body = 'Consulta marcada para dia ' . $dateObj->format('d/m/Y') . ' às ' . $horainicio . ' horas.';
+                    $mail->Subject = 'Consulta agendada!';
+                    $mail->Body = 'Sua consulta está agendada para dia ' . $dateObj->format('d/m/Y') . ' às ' . $horainicio . ' horas.';
             
                     $mail->send();
                     echo 'Email enviado com sucesso';
