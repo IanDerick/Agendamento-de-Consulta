@@ -1,10 +1,21 @@
 <?php
     session_start();
     require "../config/conexaodb.php";
+    require_once('../src/PHPMailer.php');    
+    require_once('../src/SMTP.php');    
+    require_once('../src/Exception.php');
+    
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exception;
+
+    $mail = new PHPMailer(true);
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $codpaciente = $_POST["codpaciente"] ?? null;
+        $emailPaciente = $_POST["email"] ?? null;
         $dtconsulta = $_POST["dtconsulta"] ?? null;
+        $dateObj = new DateTime($dtconsulta);
         $horainicio = $_POST["horainicio"] ?? null;
         $horafim = $_POST["horafim"] ?? null;
         $coddoutor = $_POST["SelectDoutor"] ?? null;
@@ -23,6 +34,29 @@
                     ":coddoutor" => $coddoutor
                 ]);
                 $_SESSION['success'] = "Agendamento criado com sucesso!";
+
+                try {
+                    $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.gmail.com';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'iandericksilvamota@gmail.com';
+                    $mail->Password = 'bqboyycenzokwzcq';
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                    $mail->Port = 587;
+            
+                    $mail->setFrom('iandericksilvamota@gmail.com', 'Agendamento de Consulta');
+                    $mail->addAddress($emailPaciente);
+            
+                    $mail->isHTML(true);
+                    $mail->Subject = 'Consulta marcada!';
+                    $mail->Body = 'Consulta marcada para dia ' . $dateObj->format('d/m/Y') . ' às ' . $horainicio . ' horas.';
+            
+                    $mail->send();
+                    echo 'Email enviado com sucesso';
+                } catch (Exception $e) {
+                    echo "Erro ao enviar e-mail: {$mail->ErrorInfo}";
+                }
 
                 header("Location: " . $_SERVER['HTTP_REFERER']);
                 exit;
