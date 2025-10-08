@@ -16,7 +16,7 @@
         header("Location: ../pages/novo_doutor.php");
         exit();
     }
-    if ($id && $nome && $email && $status) {
+    if ($id && $nome && $email || $status) {
         $sql = "UPDATE DOUTOR SET nome = :nome, email = :email, status = :status";
         $params = [
             ':id' => $id,
