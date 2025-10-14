@@ -11,3 +11,18 @@ function listarDoutor() {
         return [];
     }
 }
+
+function listarDoutorEmail($coddoutor){
+    global $pdo;
+    $sql = "SELECT 
+                    NOME 
+                FROM 
+                    DOUTOR
+                WHERE 
+                    coddoutor = :coddoutor 
+                    AND STATUS = 1 
+                ORDER BY NOME";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([':coddoutor' => $coddoutor]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+}

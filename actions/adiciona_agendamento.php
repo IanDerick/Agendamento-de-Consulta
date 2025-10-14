@@ -1,10 +1,11 @@
 <?php
     session_start();
     require "../config/conexaodb.php";
+    require '../actions/listar_doutor.php';
     require_once('../src/PHPMailer.php');    
     require_once('../src/SMTP.php');    
     require_once('../src/Exception.php');
-    
+
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
@@ -19,10 +20,7 @@
         $horainicio = $_POST["horainicio"] ?? null;
         $horafim = $_POST["horafim"] ?? null;
         $coddoutor = $_POST["SelectDoutor"] ?? null;
-
-        /*$stmt = $pdo->prepare("SELECT CODDOUTOR, NOME FROM DOUTOR WHERE STATUS = 1 ORDER BY NOME");
-        $stmt->execute();
-        $doutores = $stmt->fetchAll(PDO::FETCH_ASSOC)*/
+        $doutor = listarDoutorEmail($coddoutor);
 
         if ($codpaciente && $dtconsulta && $horainicio && $horafim && $coddoutor) {
             try {
@@ -54,7 +52,7 @@
             
                     $mail->isHTML(true);
                     $mail->Subject = 'Consulta agendada!';
-                    $mail->Body = 'Sua consulta está agendada para dia ' . $dateObj->format('d/m/Y') . ' às ' . $horainicio . ' horas.';
+                    $mail->Body = 'Sua consulta está agendada para dia ' . $dateObj->format('d/m/Y') . ' às ' . $horainicio . ' horas, com '.  $doutor['NOME'] .'. <br> Endereço: <a href=\'https://maps.app.goo.gl/6TamZSCXSt5H8mmA8\'>R. Arno Waldemar Döhler, 957</a>';
             
                     $mail->send();
                     echo 'Email enviado com sucesso';
@@ -68,7 +66,7 @@
                 $_SESSION['error'] = "Erro ao salvar no banco: " . $e->getMessage();
             }
         } else {
-            $_SESSION['error'] = "Erro ao salvar no banco: " . $e->getMessage();
+            $_SESSION['error'] = "Preencha todos os campos obrigatórios antes de salvar.";
         }
     } else {
         header("Location: ../pages/agenda.php");
