@@ -62,12 +62,6 @@
                 </button>
             </div>
             <form method="get" class="d-flex justify-content-end mb-3">
-                <div class="me-3">
-                    <a class="btn btn-primary" href="relatorio.php">
-                        <i class="bi bi-filetype-pdf"></i>
-                        Relatório 
-                    </a>
-                </div>
                 <input type="date" name="data" class="form-control me-2" style="max-width: 180px;"  
                     value="<?= htmlspecialchars($_GET['data'] ?? date('Y-m-d')) ?>">
                 <button type="submit" class="btn btn-filtrar">Filtrar</button>
