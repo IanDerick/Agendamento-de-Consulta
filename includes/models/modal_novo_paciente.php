@@ -21,7 +21,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="cpf" class="form-label">CPF:</label>
-                                <input type="number" class="form-control" id="CPFPaciente" name="cpf" required>
+                                <input type="text" class="form-control" placeholder="***-***-***-**" id="CPFPaciente" name="cpf" required>
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">E-mail:</label>
@@ -29,7 +29,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="telefone" class="form-label">Telefone:</label>
-                                <input type="tel" class="form-control" id="telefonePaciente" name="telefone" required>
+                                <input type="tel" class="form-control" placeholder="(**)*****-****" id="telefonePaciente" name="telefone" required>
                             </div>
                         </div>
                     </div>

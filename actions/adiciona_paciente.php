@@ -8,11 +8,12 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nome = trim($_POST['nome'] ?? '');
-        $cpf = trim($_POST['cpf'] ?? '');
+        $cpf = preg_replace('/\D/', '', $_POST['cpf']);
         $email = trim($_POST['email'] ?? '');
-        $telefone = trim($_POST['telefone'] ?? '');
+        $telefone = preg_replace('/\D/', '', $_POST['telefone']);
         $status = 1;
         $tamanho = strlen($telefone);
+        $tamanhoCPF = strlen($cpf);
 
         if (!$nome || !$cpf || !$email || !$telefone) {
             $_SESSION['error'] = "Todos os campos são obrigatórios.";
@@ -20,6 +21,8 @@
             $_SESSION['error'] = "E-mail inválido!";
         } elseif ($tamanho < 11) {
             $_SESSION['error'] = "Número de celular inválido!";
+        } elseif ($tamanhoCPF < 11) {
+            $_SESSION['error'] = "Número de CPF inválido!";
         } else {
             $stmt = $pdo->prepare("SELECT CPF FROM PACIENTE WHERE CPF = ?");
             $stmt->execute([$cpf]);
