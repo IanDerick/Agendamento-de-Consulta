@@ -13,57 +13,71 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // --------------------------
-  // 2. Mostrar informações (seta)
-  // --------------------------
-  window.mostrarInformacoes = function (event) {
-    event.preventDefault();
-    const info = document.getElementById("infoEditaAgendamento");
-    const icone = document.getElementById("iconeSeta");
-    if (!info || !icone) return;
-
-    info.classList.toggle("visivel");
-
-    if (info.classList.contains("visivel")) {
-      icone.classList.replace("bi-arrow-down", "bi-arrow-up");
-    } else {
-      icone.classList.replace("bi-arrow-up", "bi-arrow-down");
-    }
-  };
-
-  // --------------------------
-  // 3. Modal Edita Paciente
+  // 2. Modal Edita Paciente
   // --------------------------
   const modalEditaPaciente = document.getElementById("modalEditaPaciente");
 
   if (modalEditaPaciente) {
     modalEditaPaciente.addEventListener("show.bs.modal", function (event) {
       const button = event.relatedTarget;
-  
       const codpaciente = button.getAttribute("data-id");
   
-      modalEditaPaciente.querySelector("#codpaciente").value = codpaciente;
-      modalEditaPaciente.querySelector("#nome").value = button.getAttribute("data-nome");
-      modalEditaPaciente.querySelector("#cpf").value = button.getAttribute("data-cpf");
-      modalEditaPaciente.querySelector("#email").value = button.getAttribute("data-email");
-      modalEditaPaciente.querySelector("#telefone").value = button.getAttribute("data-telefone");
-      modalEditaPaciente.querySelector("#previewNome").textContent = button.getAttribute("data-nome");
-      modalEditaPaciente.querySelector("#codpaciente_exame").value = codpaciente;
+      // Funções de formatação CPF
+      function formatarCPF(cpf) {
+        if (!cpf) return "";
+        cpf = cpf.replace(/\D/g, "");
+        if (cpf.length !== 11) return cpf;
+        return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+      }
+      // Funções de formatação Telefone
+      function formatarTelefone(telefone) {
+        if (!telefone) return "";
+        telefone = telefone.replace(/\D/g, "");
+        if (telefone.length === 10) {
+          // Formato fixo (ex: 48 3234-5678)
+          return telefone.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3");
+        } else if (telefone.length === 11) {
+          // Formato celular (ex: 48 98888-7777)
+          return telefone.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+        } else {
+          return telefone;
+        }
+      }
   
-      //Carregar exames via AJAX
+      // Campos do modal
+      const nomeField = modalEditaPaciente.querySelector("#nome");
+      const cpfField = modalEditaPaciente.querySelector("#cpf");
+      const emailField = modalEditaPaciente.querySelector("#email");
+      const telefoneField = modalEditaPaciente.querySelector("#telefone");
+      const previewNome = modalEditaPaciente.querySelector("#previewNome");
+      const codPacienteField = modalEditaPaciente.querySelector("#codpaciente");
+      const codPacienteExameField = modalEditaPaciente.querySelector("#codpaciente_exame");
+      const listaExames = modalEditaPaciente.querySelector("#listaExames");
+  
+      // Preenche os campos com formatação
+      codPacienteField.value = codpaciente;
+      nomeField.value = button.getAttribute("data-nome") || "";
+      cpfField.value = formatarCPF(button.getAttribute("data-cpf") || "");
+      emailField.value = button.getAttribute("data-email") || "";
+      telefoneField.value = formatarTelefone(button.getAttribute("data-telefone") || "");
+      previewNome.textContent = button.getAttribute("data-nome") || "";
+      codPacienteExameField.value = codpaciente;
+  
+      // Carrega exames via AJAX
       fetch(`../actions/listar_exames.php?codpaciente=${codpaciente}`)
         .then(response => response.text())
         .then(html => {
-          modalEditaPaciente.querySelector("#listaExames").innerHTML = html;
+          listaExames.innerHTML = html;
         })
         .catch(error => {
-          modalEditaPaciente.querySelector("#listaExames").innerHTML = "<div class='text-danger'>Erro ao carregar exames.</div>";
+          listaExames.innerHTML = "<div class='text-danger'>Erro ao carregar exames.</div>";
           console.error("Erro ao carregar exames:", error);
         });
     });
   }
-   
+     
   // --------------------------
-  // 4. Modal Edita Doutor
+  // 3. Modal Edita Doutor
   // --------------------------
   const modalEditaDoutor = document.getElementById("modalEditaDoutor");
   if (modalEditaDoutor) {
@@ -85,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // --------------------------
-  // 5. Autocomplete Paciente
+  // 4. Autocomplete Paciente
   // --------------------------
   function inicializarAutocomplete(container) {
     const inputPaciente = container.querySelector("input[name='nome']");
@@ -144,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // --------------------------
-  // 6. Popular select Doutor
+  // 5. Popular select Doutor
   // --------------------------
   function carregarDoutores(selectElement) {
     if (!selectElement) return;
@@ -196,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // --------------------------
-  // 7. Modal Edita Agendamento - popular campos e carregar doutores
+  // 6. Modal Edita Agendamento - popular campos e carregar doutores
   // --------------------------
   if (modalEditaAgendamento) {
     modalEditaAgendamento.addEventListener("show.bs.modal", function (event) {
@@ -244,13 +258,13 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // --------------------------
-  // 8. Carregar doutores no modal Novo Agendamento
+  // 6. Carregar doutores no modal Novo Agendamento
   // --------------------------
   const selectDoutorNovo = document.getElementById("selectDoutorNovo");
   carregarDoutores(selectDoutorNovo);
 
   // --------------------------
-  // 9. Habilitar botão Enviar Exame apenas se arquivo selecionado
+  // 7. Habilitar botão Enviar Exame apenas se arquivo selecionado
   // --------------------------
   const inputImagem = document.getElementById("imagem");
   const btnEnviarExame = document.getElementById("btnSalvaExame");
@@ -265,7 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // --------------------------
-  // 10. Máscara de CPF
+  // 8. Máscara de CPF
   // --------------------------
   const cpfInput = document.getElementById("CPFPaciente");
 
@@ -285,9 +299,30 @@ document.addEventListener("DOMContentLoaded", function () {
       e.target.value = value; 
     });
   }
+  // --------------------------
+  // 9. Máscara de CPF
+  // --------------------------
+  const cpf = document.getElementById("cpf");
+
+  if (cpf) {
+    cpf.addEventListener("input", function (e) {
+      let value = e.target.value.replace(/\D/g, "");
+      
+      if (value.length > 11) value = value.slice(0, 11);
+
+      if (value.length > 9) {
+        value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{0,2}).*/, "$1.$2.$3-$4");
+      } else if (value.length > 6) {
+        value = value.replace(/^(\d{3})(\d{3})(\d{0,3})/, "$1.$2.$3");
+      } else if (value.length > 3) {
+        value = value.replace(/^(\d{3})(\d{0,3})/, "$1.$2");
+      }
+      e.target.value = value; 
+    });
+  }
 
   // --------------------------
-  // 11. Máscara de telefone
+  // 10. Máscara de telefone
   // --------------------------
   const telefoneInput = document.getElementById("telefonePaciente");
 

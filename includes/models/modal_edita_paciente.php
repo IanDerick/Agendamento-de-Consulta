@@ -30,7 +30,7 @@
 
           <div class="mb-3">
             <label for="cpf" class="form-label">CPF:</label>
-            <input type="number" class="form-control" id="cpf" name="cpf">
+            <input type="text" class="form-control" id="cpf" name="cpf">
           </div>
 
           <div class="mb-3">
