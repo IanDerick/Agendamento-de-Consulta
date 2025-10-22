@@ -21,7 +21,15 @@
         $horafim = $_POST["horafim"] ?? null;
         $coddoutor = $_POST["SelectDoutor"] ?? null;
         $doutor = listarDoutorEmail($coddoutor);
+        date_default_timezone_set('America/Sao_Paulo'); // garante fuso horário certo
+        $hoje = new DateTime('today');
+        $dataConsulta = new DateTime($dtconsulta);
 
+        if ($dataConsulta < $hoje) {
+            $_SESSION['error'] = 'Data menor que o permitido';
+            header("Location: " . $_SERVER['HTTP_REFERER']);
+            exit;
+        }
         if ($codpaciente && $dtconsulta && $horainicio && $horafim && $coddoutor) {
             try {
                 $stmt = $pdo->prepare("
@@ -52,14 +60,16 @@
             
                     $mail->isHTML(true);
                     $mail->Subject = 'Consulta agendada!';
-                    $mail->Body = 'Sua consulta está agendada para dia ' . $dateObj->format('d/m/Y') . ' às ' . $horainicio . ' horas, com '.  $doutor['NOME'] .'. <br> Endereço: <a href=\'https://maps.app.goo.gl/6TamZSCXSt5H8mmA8\'>R. Arno Waldemar Döhler, 957</a>';
+                    $dateObj = new DateTime($dtconsulta);
+                    $mail->Body = 'Sua consulta está agendada para dia ' . $dateObj->format('d/m/Y') . 
+                                ' às ' . $horainicio . ' horas, com '.  $doutor['NOME'] . 
+                                '. <br> Endereço: <a href="https://maps.app.goo.gl/6TamZSCXSt5H8mmA8">R. Arno Waldemar Döhler, 957</a>';
             
                     $mail->send();
                     echo 'Email enviado com sucesso';
                 } catch (Exception $e) {
                     echo "Erro ao enviar e-mail: {$mail->ErrorInfo}";
                 }
-
                 header("Location: " . $_SERVER['HTTP_REFERER']);
                 exit;
             } catch (PDOException $e) {
