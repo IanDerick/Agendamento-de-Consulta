@@ -299,30 +299,9 @@ document.addEventListener("DOMContentLoaded", function () {
       e.target.value = value; 
     });
   }
-  // --------------------------
-  // 9. Máscara de CPF
-  // --------------------------
-  const cpf = document.getElementById("cpf");
-
-  if (cpf) {
-    cpf.addEventListener("input", function (e) {
-      let value = e.target.value.replace(/\D/g, "");
-      
-      if (value.length > 11) value = value.slice(0, 11);
-
-      if (value.length > 9) {
-        value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{0,2}).*/, "$1.$2.$3-$4");
-      } else if (value.length > 6) {
-        value = value.replace(/^(\d{3})(\d{3})(\d{0,3})/, "$1.$2.$3");
-      } else if (value.length > 3) {
-        value = value.replace(/^(\d{3})(\d{0,3})/, "$1.$2");
-      }
-      e.target.value = value; 
-    });
-  }
 
   // --------------------------
-  // 10. Máscara de telefone
+  // 9. Máscara de telefone
   // --------------------------
   const telefoneInput = document.getElementById("telefonePaciente");
 
