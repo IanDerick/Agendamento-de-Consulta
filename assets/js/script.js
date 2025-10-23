@@ -22,29 +22,32 @@ document.addEventListener("DOMContentLoaded", function () {
       const button = event.relatedTarget;
       const codpaciente = button.getAttribute("data-id");
   
-      // Funções de formatação CPF
+      // Função de formatação CPF
       function formatarCPF(cpf) {
         if (!cpf) return "";
         cpf = cpf.replace(/\D/g, "");
+        if (cpf.length > 11) cpf = cpf.substring(0, 11);
         if (cpf.length !== 11) return cpf;
         return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
       }
-      // Funções de formatação Telefone
+  
+      // Função de formatação Telefone
       function formatarTelefone(telefone) {
         if (!telefone) return "";
         telefone = telefone.replace(/\D/g, "");
+        if (telefone.length > 11) telefone = telefone.substring(0, 11);
         if (telefone.length === 10) {
-          // Formato fixo (ex: 48 3234-5678)
+          // fixo
           return telefone.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3");
         } else if (telefone.length === 11) {
-          // Formato celular (ex: 48 98888-7777)
+          // celular
           return telefone.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
         } else {
           return telefone;
         }
       }
   
-      // Campos do modal
+      // Campos
       const nomeField = modalEditaPaciente.querySelector("#nome");
       const cpfField = modalEditaPaciente.querySelector("#cpf");
       const emailField = modalEditaPaciente.querySelector("#email");
@@ -54,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const codPacienteExameField = modalEditaPaciente.querySelector("#codpaciente_exame");
       const listaExames = modalEditaPaciente.querySelector("#listaExames");
   
-      // Preenche os campos com formatação
+      // Preenche campos com formatação
       codPacienteField.value = codpaciente;
       nomeField.value = button.getAttribute("data-nome") || "";
       cpfField.value = formatarCPF(button.getAttribute("data-cpf") || "");
@@ -62,6 +65,20 @@ document.addEventListener("DOMContentLoaded", function () {
       telefoneField.value = formatarTelefone(button.getAttribute("data-telefone") || "");
       previewNome.textContent = button.getAttribute("data-nome") || "";
       codPacienteExameField.value = codpaciente;
+  
+      // Limita e formata CPF em tempo real
+      cpfField.addEventListener("input", () => {
+        let value = cpfField.value.replace(/\D/g, ""); // remove não numéricos
+        if (value.length > 11) value = value.substring(0, 11);
+        cpfField.value = formatarCPF(value);
+      });
+  
+      // Limita e formata Telefone em tempo real
+      telefoneField.addEventListener("input", () => {
+        let value = telefoneField.value.replace(/\D/g, "");
+        if (value.length > 11) value = value.substring(0, 11);
+        telefoneField.value = formatarTelefone(value);
+      });
   
       // Carrega exames via AJAX
       fetch(`../actions/listar_exames.php?codpaciente=${codpaciente}`)
@@ -74,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
           console.error("Erro ao carregar exames:", error);
         });
     });
-  }
+  }  
      
   // --------------------------
   // 3. Modal Edita Doutor
