@@ -14,7 +14,7 @@
     try {
         $stmt = $pdo->prepare("DELETE FROM AGENDAMENTO WHERE IDAGENDAMENTO = ?");
         $stmt->execute([$id]);
-        $_SESSION['success'] = "Agendamento deletado com sucesso!";
+        //$_SESSION['success'] = "Agendamento deletado com sucesso!";
     } catch (PDOException $e) {
         $_SESSION['error'] = "Erro ao excluir no banco: " . $e->getMessage();
     }

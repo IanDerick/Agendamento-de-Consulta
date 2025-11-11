@@ -344,3 +344,50 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-success ms-2",
+      cancelButton: "btn btn-danger"
+    },
+    buttonsStyling: false
+  });
+
+  // Seleciona todos os botões de exclusão
+  document.querySelectorAll('.btn-excluir').forEach(botao => {
+    botao.addEventListener('click', function (event) {
+      event.preventDefault();
+
+      const link = this.getAttribute('href');
+
+      swalWithBootstrapButtons.fire({
+        title: "Tem certeza?",
+        text: "Você não poderá reverter esta ação!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sim, excluir!",
+        cancelButtonText: "Cancelar",
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire({
+            title: "Excluido",
+            text: "O registro foi excluído.",
+            icon: "success",
+            timer: 1500,
+            showConfirmButton: false
+          }).then(() => {
+            window.location.href = link;
+          });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelado",
+            text: "Registro não foi excluído.",
+            icon: "error"
+          });
+        }
+      });
+    });
+  });
+});
