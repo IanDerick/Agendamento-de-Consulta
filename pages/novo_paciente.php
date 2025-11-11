@@ -60,7 +60,9 @@
                                     data-telefone="<?= htmlspecialchars($p['telefone']) ?>">
                                 <i class="bi bi-pencil"></i>
                             </button>
-                            <a href="../actions/exclui_paciente.php?codpaciente=<?= htmlspecialchars($p['codpaciente']) ?>" class="btn btn-outline-danger btn-sm ms-2" onclick="return confirm('Deseja excluir este usuário?');">
+                            <a href="../actions/exclui_paciente.php?codpaciente=<?= htmlspecialchars($p['codpaciente']) ?>"
+                                class="btn btn-outline-danger btn-sm ms-2 btn-excluir"
+                                data-id="<?= (int)$p['codpaciente'] ?>">
                                 <i class="bi bi-trash"></i>
                             </a>
                         </div>
@@ -76,6 +78,7 @@
 <?php include '../includes/models/modal_novo_paciente.php'; ?>
 <?php include '../includes/models/modal_edita_paciente.php';?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../assets/js/script.js"></script>
 </body>
 </html>

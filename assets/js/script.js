@@ -354,7 +354,6 @@ document.addEventListener('DOMContentLoaded', function () {
     buttonsStyling: false
   });
 
-  // Seleciona todos os botões de exclusão
   document.querySelectorAll('.btn-excluir').forEach(botao => {
     botao.addEventListener('click', function (event) {
       event.preventDefault();
@@ -372,8 +371,8 @@ document.addEventListener('DOMContentLoaded', function () {
       }).then((result) => {
         if (result.isConfirmed) {
           swalWithBootstrapButtons.fire({
-            title: "Excluido",
-            text: "O registro foi excluído.",
+            title: "Excluído!",
+            text: "O registro foi excluído com sucesso.",
             icon: "success",
             timer: 1500,
             showConfirmButton: false
@@ -383,7 +382,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           swalWithBootstrapButtons.fire({
             title: "Cancelado",
-            text: "Registro não foi excluído.",
+            text: "O registro não foi excluído.",
             icon: "error"
           });
         }
