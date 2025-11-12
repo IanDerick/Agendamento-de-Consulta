@@ -14,7 +14,7 @@
     try {
         $stmt = $pdo->prepare("DELETE FROM DOUTOR WHERE CODDOUTOR = ?");
         $stmt->execute([$id]);
-        $_SESSION['success'] = "Doutor deletado com sucesso!";
+        //$_SESSION['success'] = "Doutor deletado com sucesso!";
     } catch (PDOException $e) {
         $_SESSION['error'] = "Erro ao excluir no banco: " . $e->getMessage();
     }

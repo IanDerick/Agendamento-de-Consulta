@@ -48,7 +48,7 @@ foreach ($exames as $linha) {
         . date("d/m/Y H:i", strtotime($linha['reccreatedon'])) . '</small>';
     echo '<a href="../actions/exclui_exames.php?idexames='
         . $linha['idexames'] . '&codpaciente=' . $codpaciente
-        . '" onclick="return confirm(\'Excluir?\')" class="ms-auto">';
+        . '" class="ms-auto btn-excluir-exame" data-idexame="' . (int)$linha['idexames'] . '">';
     echo '<i class="bi bi-trash"></i></a>'; 
     echo '</div>';
 }

@@ -345,6 +345,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+  // --------------------------
+  // 10. SweetAlert Exclusão
+  // --------------------------
 document.addEventListener('DOMContentLoaded', function () {
   const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
@@ -389,4 +392,38 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
+});
+
+  // --------------------------
+  // 11. SweetAlert Exclusão Exames
+  // --------------------------
+document.addEventListener('click', function(e) {
+  const btn = e.target.closest('.btn-excluir-exame');
+  if (btn) {
+    e.preventDefault();
+    const url = btn.getAttribute('href');
+
+    Swal.fire({
+      title: 'Tem certeza?',
+      text: 'O exame será excluído permanentemente!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sim, excluir!',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Excluído!',
+          text: 'O exame foi removido com sucesso.',
+          icon: 'success',
+          timer: 1500,
+          showConfirmButton: false
+        }).then(() => {
+          window.location.href = url;
+        });
+      }
+    });
+  }
 });
