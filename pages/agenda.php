@@ -92,7 +92,6 @@
                                             data-doutor="<?= (int)$a['CODDOUTOR'] ?>">
                                         <i class="bi bi-pencil"></i>
                                     </button>
-
                                     <a href="../actions/exclui_agendamento.php?idagendamento=<?= (int)$a['IDAGENDAMENTO'] ?>"
                                     class="btn btn-outline-danger btn-sm ms-2 btn-excluir"
                                     data-id="<?= (int)$a['IDAGENDAMENTO'] ?>">
