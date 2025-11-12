@@ -428,6 +428,9 @@ document.addEventListener('click', function(e) {
   }
 });
 
+  // --------------------------
+  // 12. retira alerta
+  // --------------------------
 document.addEventListener('DOMContentLoaded', function () {
   // Seleciona todos os alerts
   const alerts = document.querySelectorAll('.alert');
@@ -440,4 +443,19 @@ document.addEventListener('DOMContentLoaded', function () {
       bsAlert.close();
     }, 2000);
   });
+});
+
+  // --------------------------
+  // 13. Tela de load
+  // --------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("formNovoAgendamento");
+  const loading = document.getElementById("loadingOverlay");
+
+  if (form) {
+    form.addEventListener("submit", function() {
+      // Mostra o loading
+      loading.style.display = "flex";
+    });
+  }
 });
