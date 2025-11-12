@@ -74,7 +74,12 @@
         </main>
     </div>
 </div>
-
+<div id="loadingOverlay" 
+     style="position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.25); display: none;
+            align-items: center; justify-content: center; z-index: 9999;">
+    <?php include '../includes/load.php'; ?>
+</div>
 <?php include '../includes/models/modal_novo_paciente.php'; ?>
 <?php include '../includes/models/modal_edita_paciente.php';?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

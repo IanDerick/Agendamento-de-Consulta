@@ -115,7 +115,12 @@
         </main>
     </div>
 </div>
-
+<div id="loadingOverlay" 
+     style="position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.25); display: none;
+            align-items: center; justify-content: center; z-index: 9999;">
+    <?php include '../includes/load.php'; ?>
+</div>
 <?php include '../includes/models/modal_novo_agendamento.php'; ?>
 <?php include '../includes/models/modal_edita_agendamento.php'; ?>
 <script src="../assets/js/script.js"></script>
