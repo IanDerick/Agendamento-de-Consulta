@@ -109,12 +109,33 @@
         </main>
     </div>
 </div>
-
+<div id="loadingOverlay" 
+     style="position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255,255,255,0.85); display: none;
+            align-items: center; justify-content: center; z-index: 9999;">
+  <div class="text-center">
+    <div class="spinner-border text-primary" style="width: 4rem; height: 4rem;" role="status"></div>
+    <p class="mt-3 fw-semibold text-primary">Processando agendamento...</p>
+  </div>
+</div>
 <?php include '../includes/models/modal_novo_agendamento.php'; ?>
 <?php include '../includes/models/modal_edita_agendamento.php'; ?>
 <script src="../assets/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("formNovoAgendamento");
+  const loading = document.getElementById("loadingOverlay");
+
+  if (form) {
+    form.addEventListener("submit", function() {
+      // Mostra o loading
+      loading.style.display = "flex";
+    });
+  }
+});
+</script>
 </body>
 </html>
     

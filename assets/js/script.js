@@ -427,3 +427,17 @@ document.addEventListener('click', function(e) {
     });
   }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Seleciona todos os alerts
+  const alerts = document.querySelectorAll('.alert');
+
+  alerts.forEach(alert => {
+    // Aguarda 2 segundos (2000 ms)
+    setTimeout(() => {
+      // Usa o método do Bootstrap para esconder com animação
+      const bsAlert = bootstrap.Alert.getOrCreateInstance(alert);
+      bsAlert.close();
+    }, 2000);
+  });
+});

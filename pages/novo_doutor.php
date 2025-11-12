@@ -42,8 +42,7 @@
                             <?php unset($_SESSION['error']); ?>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
-                    <?php endif; ?>
-                <button type="button" class="btn btn-outline-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#modalNovoDoutor">
+                    <?php endif; ?>                <button type="button" class="btn btn-outline-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#modalNovoDoutor">
                     <i class="bi bi-plus me-10"></i>
                 </button>
             </div>
