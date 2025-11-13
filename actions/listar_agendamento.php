@@ -80,5 +80,33 @@
         return [];
     }
 }
-    
+function listarAgendamentoDoutorConflitante($dtconsulta, $horainicio, $horafim, $coddoutor) {
+    global $pdo;
+
+    try {
+        $sql = "SELECT 1
+                FROM AGENDAMENTO
+                WHERE coddoutor = :doutor
+                AND dtconsulta = :data
+                AND NOT (
+                    :horafim <= horainicio  
+                    OR :horainicio >= horafim
+                )
+                LIMIT 1";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ':data'        => $dtconsulta,
+            ':horainicio'  => $horainicio,
+            ':horafim'     => $horafim,
+            ':doutor'      => $coddoutor
+        ]);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+
+    } catch (PDOException $e) {
+        error_log("Erro ao verificar conflito: " . $e->getMessage());
+        return false;
+    }
+}
 ?>
