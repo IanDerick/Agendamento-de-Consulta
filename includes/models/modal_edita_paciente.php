@@ -62,7 +62,9 @@
         <!-- LISTAGEM DOS EXAMES -->
         <h6>Exames enviados</h6>
         <div id="listaExames" class="mb-3">
-          <div class="text-muted">Carregando exames...</div>
+        <a href="../actions/ver_exame.php?id=<?= $linha['idexames'] ?>" target="_blank">
+    Visualizar examessss
+</a>
         </div>
       </div>
     </div>

@@ -22,15 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['imagem'])) {
         exit;
     }
 
-    $pasta = __DIR__ . "../../includes/models/arquivos/";
-
-    if (!is_dir($pasta)) {
-        mkdir($pasta, 0755, true);
-    }
-
+    // Valida Extensão
     $nomeOriginal = $arquivo['name'];
     $extensao = strtolower(pathinfo($nomeOriginal, PATHINFO_EXTENSION));
-    $novoNome = uniqid() . "." . $extensao;
 
     if (!in_array($extensao, ['jpg', 'jpeg', 'png'])) {
         $_SESSION['msg'] = "Tipo de arquivo não aceito.";
@@ -38,25 +32,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['imagem'])) {
         exit;
     }
 
-    $caminhoFisico = $pasta . $novoNome;
-    $caminhoBanco = "/Agendamento-de-Consulta/includes/models/arquivos/" . $novoNome;
+    // Lê o arquivo binário temporário
+    $fileTmp = $arquivo['tmp_name'];
+    $fileData = file_get_contents($fileTmp);
 
-    if (move_uploaded_file($arquivo['tmp_name'], $caminhoFisico)) {
-        try {
-            $sql = "INSERT INTO exames (codpaciente, arquivo, reccreatedon)
-                    VALUES (:codpaciente, :arquivo, NOW())";
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindValue(':codpaciente', $codpaciente, PDO::PARAM_INT);
-            $stmt->bindValue(':arquivo', $caminhoBanco, PDO::PARAM_STR);
-            $stmt->execute();
-            $_SESSION['msg'] = "Arquivo enviado com sucesso!";
-        } catch (PDOException $e) {
-            $_SESSION['msg'] = "Erro ao salvar no banco: " . $e->getMessage();
-        }
-    } else {
-        $_SESSION['msg'] = "Falha ao mover arquivo.";
+    // Descobre o mime real (segurança!)
+    $mime = mime_content_type($fileTmp);
+
+    // Converte em base64 completo
+    $base64Final = "data:$mime;base64," . base64_encode($fileData);
+
+    // SALVAR NO BANCO (sem mover arquivo)
+    try {
+        $sql = "INSERT INTO exames (codpaciente, arquivo, reccreatedon)
+                VALUES (:codpaciente, :arquivo, NOW())";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(':codpaciente', $codpaciente, PDO::PARAM_INT);
+        $stmt->bindValue(':arquivo', $base64Final, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $_SESSION['msg'] = "Imagem enviada e salva com sucesso!";
+    } catch (PDOException $e) {
+        $_SESSION['msg'] = "Erro ao salvar no banco: " . $e->getMessage();
     }
-    
+
     header("Location: " . $_SERVER['HTTP_REFERER']);
     exit;
 }
